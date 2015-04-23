@@ -1,0 +1,224 @@
+﻿var imagelal = null;
+//var msg = document.getElementById("msg");
+if (!!window.Worker) {
+	var myWorker = new Worker("websocketwork.js");
+	
+	myWorker.onmessage = function(e) {
+		//result.textContent = e.data;
+		var msg = document.getElementById("msg");
+		console.log('Message received from worker :' + e.data );
+		msg.innerHTML += "<p>" + e.data + "</p>";
+	}
+	
+	
+	function connect(){
+		myWorker.postMessage(['connect']);
+	}
+	
+	function  login1(){
+		// 登录
+		console.log('点击登录');
+		var u='user2';
+		var v = 'verify2';
+		myWorker.postMessage(['login',u,v]);
+	
+	}
+	function send(){
+		var msg = document.getElementById("msg");
+		var text = document.getElementById("text").value;
+		if(text == ""){
+			msg.innerHTML += "<p>请输入一些文字</p>";
+			return;
+		}
+		try{
+			//websocket.send(text);
+			myWorker.postMessage(['send',text]);
+			msg.innerHTML += "<p>发送数据:  " + text + "</p>";
+		}catch(exception){
+			msg.innerHTML += "<p>发送数据出错</p>";
+		}
+		document.getElementById("text").value = "";
+		
+	}
+	 
+	function sendimage2(){
+		//websocket.send(imagelal);
+		myWorker.postMessage(['sendimage2',imagelal]);
+	}
+
+	function disconnect(){
+		myWorker.postMessage(['disconnect']);
+	}
+}
+
+window.onload = function(){
+	 var input = document.getElementById("demo_input");
+
+	 var img_area = document.getElementById("img_area");
+	 if ( typeof(FileReader) === 'undefined' ){
+			 msg.innerHTML = "抱歉，你的浏览器不支持 FileReader，请使用现代浏览器操作！";
+			 input.setAttribute( 'disabled','disabled' );
+	 } else {
+			 input.addEventListener( 'change',readFile,false );}
+}
+		
+
+function readFile(){
+	
+	var file = this.files[0];
+	//这里我们判断下类型如果不是图片就返回 去掉就可以上传任意文件 
+	if(!/image\/\w+/.test(file.type)){ 
+			alert("请确保文件为图像类型");
+			return false;
+	}
+	var reader = new FileReader();
+	reader.readAsArrayBuffer(file);
+	//reader.readAsDataURL(file);
+	reader.onload = function(e){
+			imagelal = reader.result;
+			msg.innerHTML += '<p>上传文件 + +' + file.name +'</p>';
+			//image = file;
+			//img_area.innerHTML = '<div class="sitetip">图片img标签展示：</div><img src="'+this.result+'" alt=""/>';
+	}
+	//reader.readAsArrayBuffer(blob);
+	
+}
+
+window.addEventListener("message", function (event) {
+	if (event.source != window)
+		return;
+	if (event.data.from == 'cs') {
+		console.log('页面接收到内容脚本信息：' + event.data.msg);
+		switch (event.data.msg) {
+			case 'screenshotOK':	
+				document.getElementById('sendimag1e').disabled = false;			
+				document.getElementById('msg').innerHTML += '<p>截屏成功 <p>';
+				document.getElementById("img_area").innerHTML = '<div class="sitetip">图片img标签展示：</div><img src="'+event.data.image1+'" alt=""/>';
+				//imagelal = event.data.image1;
+				//var reader = new FileReader();
+				//reader.readAsArrayBuffer(event.data.image1);
+				//imagelal = new Image(event.data.image1);//reader.result;
+				imagelal = dataURItoBlob(event.data.image1);
+//				var binary_str = atob(event.data.image1); //转为原始编码
+//				var array = new Uint8Array(new ArrayBuffer(binary_str.length));
+//				for ( var i = 0;  i < binary_str.length; i++) {
+//					array[i] = bb.charCodeAt(i);
+//				}
+//				imagelal = new DataView(array.buffer);
+				
+				break;
+			case 'clearCacheOK':
+                document.getElementById('btn').disabled = false;
+                document.getElementById('msg').innerHTML += '<p>缓存清除成功<p>';
+                break;
+                    
+			default:
+		}
+	}
+});
+
+function screenshot(){
+	//console.log(window);
+	console.log(' 发送截屏 命令给插件 ');
+	document.getElementById('sendimag1e').disabled = true;
+    document.getElementById('msg').innerHTML += '<p>截屏中。。。<p>';
+	window.postMessage({ from: 'page', msg: 'screenshot'}, '*');
+}
+
+function login(){
+	// 登录
+	console.log('点击登录');
+}
+
+function sendcommand1(){
+	console.log(window);
+	//console.log(' 发送截屏 命令给插件 ');
+	//window.postMessage({ from: 'page', msg: 'screenshot'}, '*');
+	var ev = document.createEvent('HTMLEvents'); 
+	ev.initEvent('EventName', false, false);
+	document.dispatchEvent(ev);	
+}
+function test() {
+	document.getElementById('btn').disabled = true;
+	document.getElementById('msg').innerHTML += '<p>缓存清除中。。。<p>';
+	console.log('页面发送消息：clearCache');
+	window.postMessage({ from: 'page', msg: 'clearCache'}, '*');
+}
+
+function base64DecToArr (sBase64, nBlocksSize) {
+
+  var
+    sB64Enc = sBase64.replace(/[^A-Za-z0-9\+\/]/g, ""), nInLen = sB64Enc.length,
+    nOutLen = nBlocksSize ? Math.ceil((nInLen * 3 + 1 >> 2) / nBlocksSize) * nBlocksSize : nInLen * 3 + 1 >> 2, taBytes = new Uint8Array(nOutLen);
+
+  for (var nMod3, nMod4, nUint24 = 0, nOutIdx = 0, nInIdx = 0; nInIdx < nInLen; nInIdx++) {
+    nMod4 = nInIdx & 3;
+    nUint24 |= b64ToUint6(sB64Enc.charCodeAt(nInIdx)) << 18 - 6 * nMod4;
+    if (nMod4 === 3 || nInLen - nInIdx === 1) {
+      for (nMod3 = 0; nMod3 < 3 && nOutIdx < nOutLen; nMod3++, nOutIdx++) {
+        taBytes[nOutIdx] = nUint24 >>> (16 >>> nMod3 & 24) & 255;
+      }
+      nUint24 = 0;
+
+    }
+  }
+
+  return taBytes;
+}
+
+function b64ToUint6 (nChr) {
+
+  return nChr > 64 && nChr < 91 ?
+      nChr - 65
+    : nChr > 96 && nChr < 123 ?
+      nChr - 71
+    : nChr > 47 && nChr < 58 ?
+      nChr + 4
+    : nChr === 43 ?
+      62
+    : nChr === 47 ?
+      63
+    :
+      0;
+
+}
+
+function dataURItoBlob(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], {type:mimeString});
+}
+
+function dataURItoBuffer(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    return ia;
+}

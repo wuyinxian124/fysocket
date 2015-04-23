@@ -1,0 +1,128 @@
+package com.fy.msgsys.appclient.api;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.URI;
+import java.net.UnknownHostException;
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.logging.Logger;
+
+import com.fy.msgsys.appclient.api.exception.ConnectSocketException;
+import com.fy.msgsys.appclient.api.util.SocketConstantAPP;
+import com.fy.msgsys.appclient.api.util.logger.LoggerUtil;
+
+
+public class WebsocketClientImp extends WebsocketClientAbs {
+
+	// 获取日志对象 打日志
+	private final Logger logger = LoggerUtil.getLogger(this.getClass().getName());
+	
+	private final static String URL = "localhost";
+	private final static int PORT = 8876;
+
+	private Socket socketApp ;				// socket 连接对象
+
+	private DataInputStream socketRead; 	// socket 读
+	private DataOutputStream socketWrite;	// socket 写
+	
+	
+	public WebsocketClientImp() throws UnknownHostException, IOException{
+		this(URL,PORT);
+	}
+	
+	public WebsocketClientImp(String url,int port) throws UnknownHostException, IOException{
+		//  创建socket连接
+		if(null == url){
+			url = URL;
+		}
+
+		socketApp = new Socket(url,port);
+		socketRead  = (DataInputStream) socketApp.getInputStream();
+		socketWrite = (DataOutputStream) socketApp.getOutputStream();
+	}
+	
+
+	/**
+	 * 用户验证
+	 * @throws IOException 
+	 * @throws ConnectSocketException 
+	 */
+	@Override
+	public void Connection(String userKey, String virifyCode) throws IOException, ConnectSocketException {
+		boolean pass = false;
+			String verfUser = userKey+ SocketConstantAPP.splitNormalUV.getRss()+virifyCode;
+			socketWrite.writeInt(verfUser.length());
+			socketWrite.flush();
+			socketWrite.write(verfUser.getBytes());
+			socketWrite.flush();
+			
+			int readLen = socketRead.readInt();
+			String ack = socketRead.readUTF();
+			if("ackPass".equals(ack)){
+				pass = true;
+			}
+		if( !pass){
+			throw new ConnectSocketException(200,"用户验证失败");
+		}
+		
+	}
+	
+	/**
+	 * 若用到分控 则直接使用该方法验证用户
+	 */
+	@Override
+	public void connection() {
+
+		
+	}
+
+	@Override
+	public void sendMsgBinary(ByteBuffer msg, long timeout) {
+		
+	}
+
+	@Override
+	public void sendMsgBinary(List<ByteBuffer> msg, long timeout) {
+		
+	}
+
+	@Override
+	public void sendMsgText(ByteBuffer msg, long timeout) {
+
+		
+		
+		try {
+			sendTextMsg(msg);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void close(long timeout) {
+		
+	}
+
+	/**
+	 * 真正操作socket发送文本消息的方法
+	 * @throws IOException 
+	 * 
+	 */
+	private void sendTextMsg(ByteBuffer msg) throws IOException{
+		
+		socketWrite.write(msg.array());
+		
+	}
+
+	/**
+	 * 真正直接操作socket 发送二进制消息的方法
+	 */
+	private void sendBinaryMsg(ByteBuffer msg){
+		
+		
+	}
+
+}

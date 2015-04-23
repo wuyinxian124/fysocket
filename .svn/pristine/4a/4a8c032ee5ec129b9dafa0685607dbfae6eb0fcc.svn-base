@@ -1,0 +1,85 @@
+package com.fy.msgsys.appclient.napi.core;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+
+import com.fy.msgsys.appclient.napi.interf.FeedbackInterf;
+
+public class WebsocketClientImpl {
+
+	private FeedbackInterf feedbackInterf;
+	
+	public WebsocketClientImpl(FeedbackInterf feedbackInterf){
+		this.feedbackInterf = feedbackInterf;
+	}
+	
+	
+	/**
+	 * 处理消息线程
+	 * <br>
+	 * 该线程负责从通道中读取消息
+	 * 并将该消息放到待处理队列中，
+	 * 如果待处理队列满，则线程阻塞
+	 * @author wurunzhou
+	 *
+	 */
+	class ReadIOMsgThread implements Runnable{
+
+		private DataInputStream ind ;
+		
+		ReadIOMsgThread(){
+			try {
+				this.ind = new DataInputStream(appSocket.getInputStream());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		@Override
+		public void run() {
+			// 不断的读IO
+			while(true){
+				
+				ByteBuffer rmsg = ByteBuffer.allocate(12);
+				rmsg.put("待处理消息".getBytes());
+				rmsg.flip();
+				receiveMsgQueue.insert(rmsg);
+			}
+		}
+		
+	}
+	
+	/**
+	 * 
+	 * 发送线程
+	 * <br> 
+	 * 从待发送消息队列中取出一个消息发送出去，
+	 * 如果待发送消息队列为空，则该线程阻塞。
+	 * @author wurunzhou
+	 *
+	 */
+	class WriteIOMsgThread implements Runnable{
+
+		private DataOutputStream outd ;
+		WriteIOMsgThread(){
+			try {
+				DataOutputStream outd = new DataOutputStream(appSocket.getOutputStream());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		@Override
+		public void run() {
+			while(sendMsgQueue.hasPendingStatus()){
+				sendMsg(sendMsgQueue.get());
+				
+			}
+		}
+		
+	}
+	
+	
+}

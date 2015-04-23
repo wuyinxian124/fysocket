@@ -1,0 +1,56 @@
+package com.fy.msgsys.server.util;
+
+import java.util.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.SynchronousQueue;
+
+public class SignChatroomUtil {
+
+	// 该对象用来保存全局的 待登录用户以及待 用户互动室列表
+	// 存储格式是 一个互动室对应多个 用户
+	private  static ConcurrentMap<String, ArrayList<String>> CHAT1USER ;
+			
+	private SignChatroomUtil(){
+		CHAT1USER = new ConcurrentHashMap<String, ArrayList<String>>();
+	}
+	
+    private static class SingletonContainer{      
+        private static SignChatroomUtil instance = new SignChatroomUtil();      
+    }      
+    public static SignChatroomUtil getInstance(){      
+        return SingletonContainer.instance;      
+    }   
+	
+    public void loginIn(String userkey,List<String> chats){
+    	for(String chat :chats){
+    		if(CHAT1USER.containsKey(chat)){
+    			CHAT1USER.get(chat).add(userkey);
+    		}else{
+    			ArrayList<String> lal = new ArrayList<>();
+    			lal.add(userkey);
+    			CHAT1USER.put(chat,  lal);
+    		}
+    	}
+    	
+    }
+    
+
+    
+    public void loginOut(String userkey,List<String> chats){
+    	
+    	for(String chat:chats){
+    		if(CHAT1USER.containsKey(chat)){
+    			CHAT1USER.get(chat).remove(userkey);
+    		}
+    	}
+    }
+    
+    public List<String> sendList(String chatView){
+    	return CHAT1USER.get(chatView);
+    }
+	
+}
+
+

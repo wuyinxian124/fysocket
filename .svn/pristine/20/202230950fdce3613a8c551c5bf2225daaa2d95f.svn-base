@@ -1,0 +1,5 @@
+package com.fy.msgsys.appclient.api.util;
+
+public class ReceiveMsgQueue {
+
+}

@@ -1,0 +1,52 @@
+package com.fy.msgsys.appclient.napi.core;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+
+import com.fy.msgsys.appclient.api.util.ByteBufferSwap;
+import com.fy.msgsys.appclient.api.util.ReceiveMsgQueue;
+import com.fy.msgsys.appclient.api.util.SendMsgQueue;
+import com.fy.msgsys.appclient.napi.interf.FeedbackInterf;
+
+public class WebsocketClientImpl {
+
+	private FeedbackInterf feedbackInterf;
+	/**
+	 * 待发送消息队列
+	 */
+	public  SendMsgQueue sendMsgQueue  ;
+	/**
+	 * 待处理消息队列
+	 */
+	public  ReceiveMsgQueue receiveMsgQueue ;
+	
+	public WebsocketClientImpl(FeedbackInterf feedbackInterf){
+		this.feedbackInterf = feedbackInterf;
+		sendMsgQueue = new SendMsgQueue(5);
+		receiveMsgQueue = new ReceiveMsgQueue(5);
+	}
+	
+	/**
+	 * 客户端读取IO消息
+	 * 解码之后，提示给用户
+	 */
+	public void  processMsgT(ByteBuffer msg){
+		System.out.println(""+ByteBufferSwap.byteBufferToString(msg));
+		ByteBuffer rmsg = ByteBuffer.allocate(12);
+		rmsg.put("新消息".getBytes());
+		rmsg.flip();
+		writeMsgT(rmsg);
+	}
+
+	/**
+	 * 提示用户有新消息
+	 */
+	public void writeMsgT(ByteBuffer msg){
+
+		feedbackInterf.onMessageT(msg);
+	}
+	
+	
+}

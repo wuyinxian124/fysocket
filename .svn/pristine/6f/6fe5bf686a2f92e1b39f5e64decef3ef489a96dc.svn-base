@@ -1,0 +1,258 @@
+package com.fy.msgsys.server;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+import com.fy.msgsys.server.util.SignChatroomUtil;
+import com.fy.msgsys.server.util.SocketConstant;
+import com.fy.msgsys.server.util.UserUtil;
+
+public class NormalforJavaServer  extends Thread{
+
+	private final static int PROT = 8866;
+	private final static String SYSTEMOUT = "************";
+	private final static String ERROROUT = "-------------";
+    @Override
+	public void run() {
+    	try {
+			start1();
+		} catch (IOException e) {
+			System.out.println(ERROROUT + "socket 模块启动异常");
+		}
+	}
+
+    /**
+     * socket 处理程序启动
+     * @throws IOException
+     * @throws InterruptedException 
+     */
+	public void start1() throws IOException {
+		ServerSocket server = new ServerSocket(PROT);
+		System.out.println(SYSTEMOUT +"socket 处理程序 监听 ：" + PROT );
+		int ErrorTimes = 0;
+		boolean  overRun = false;
+
+		
+		ExecutorService  pool =
+			    Executors.newFixedThreadPool(2);
+    	while(!overRun){
+    		try {
+    			final Socket ss = server.accept();
+    			pool.execute((new ServerThread1(ss)));
+    			//new Thread((new ServerThread1(server.accept()))).start();
+			} catch (IOException e) {
+				System.out.println(ERROROUT + "socket 接收连接出现异常，但是不能终止socket主线程，继续接收新的连接");
+				ErrorTimes ++;
+				if(ErrorTimes>=5){
+					System.out.println(ERROROUT +"已经出现五次以上连接异常，关闭socket主程序");
+					overRun = true;
+					//pool.
+				}
+			}
+    	}
+//        // 关闭启动线程
+		List<Runnable> runnables = pool.shutdownNow();
+		System.out.println(SYSTEMOUT + "还有 "+runnables.size()+" 个连接，在等待验证");
+    	System.out.println(SYSTEMOUT +"关闭socket 主程序，不接收新的socket连接，关闭所有现有socket连接");
+    	
+    }
+
+
+    /**
+     * 负责处理wtbweb 发送的命令
+     * @author wurunzhou
+     *
+     */
+	class ServerThread1 implements Runnable {
+
+	    private DataOutputStream dsout ;
+	    private DataInputStream dsin;
+	    private Socket serverfork;
+		public ServerThread1(Socket serverfork) {
+			System.out.println(SYSTEMOUT + "从线程池中拿一个线程，处理用户验证");
+			this.serverfork = serverfork;
+		}
+		
+		@Override
+		public void run() {
+			if (handlerShake()) {
+				System.out.println( SYSTEMOUT+ "用户验证通过 ， 启动新的子线程处理 读写操作");
+				new Thread(new ReciveThreaS4()).start();
+			} 
+			// new Thread(new SendThreadS4()).start();
+		}
+		
+		
+	    /**
+	     * 验证socket 用户
+	     * @param ss
+	     * @return
+	     */
+		private boolean handlerShake() {
+			boolean pass = false;
+			try {
+				dsout = new DataOutputStream(serverfork.getOutputStream());
+				dsin = new DataInputStream(serverfork.getInputStream());
+				int readLen = dsin.readInt();
+				byte[] buf = new byte[readLen];
+				dsin.read(buf, 0, readLen);
+				String veriUser = new String(buf);
+				System.out.println(SYSTEMOUT + "允许一个用户登录socket，其用户信息（用户ID和验证码）：" + veriUser);
+
+				dsout.writeInt(veriUser.length());
+				dsout.flush();
+				dsout.writeUTF("ackPass");
+				dsout.flush();
+				pass = true;
+			} catch (IOException e) {
+				System.out.println(ERROROUT +" 读取用户信息失败，验证不成功");
+			}
+
+			return pass;
+		}
+		
+		/**
+		 * 接收wtbweb 发送命令，然后回复
+		 * <br> 该线程服务器接收消息，解析消息，回复用户
+		 * @author wurunzhou
+		 *
+		 */
+	    class ReciveThreaS4 implements Runnable{
+
+			@Override
+			public void run() {
+				try {
+					while (true) {
+						String cMsg = reciveText();
+						System.out.println("收到一个命令" + cMsg);
+						if (process(cMsg))
+							sendText(cMsg + " :200ok");
+
+					}
+				} catch (IOException e) {
+					System.out.println(ERROROUT+"读写子线程 处理失败，关闭子线程");
+				}
+				System.out.println(SYSTEMOUT + "关闭一个读写子线程");
+			}
+			
+			
+		    /**
+		     * 处理消息
+		     * <br> 接收来web服务器的消息
+		     * 功能包括：用户登录，用户退出，已有互动室，创建互动室（帮区，私聊）
+		     * 消息内容是：用户ID：验证码，用户ID,用户ID：互动室视图ID列表，互动室视图ID：互动室用户列表
+		     * @param message 来自吾托帮 web的命令
+		     * @return
+		     */
+			private boolean process(String message) {
+
+				if(message == null || "".equals(message))
+					return false;
+				
+				boolean pass = false;
+				
+				String tmp = message.length()>=3? message.substring(0, Integer.parseInt(SocketConstant.splitLen.getRssURL())):"";
+
+				if (SocketConstant.holeLoginUser.getRssURL().equals(tmp)) {
+					// 发送的是待登录用户
+					String[] vU = message.substring(3, message.length()).split(SocketConstant.splitUV.getRssURL());
+					UserUtil.getInstance().add(vU[0], vU[1]);
+					pass = true;
+				} else if (SocketConstant.hlUserChats.getRssURL().equals(tmp)) {
+					// 发送的是待登录用户 互动室列表
+					String[] vU = message.substring(3, message.length()).split(SocketConstant.splitUC.getRssURL());
+					System.out.println("用户"+ vU[0] +" ,对应的互动室  " +string2list(vU[1]).toString());
+					SignChatroomUtil.getInstance().loginIn(vU[0], string2list(vU[1]));
+					pass = true;
+				} else if(SocketConstant.quitUser.getRssURL().equals(tmp)) {
+					String vU = message.substring(4, message.length());
+					System.out.println("用户 "+ vU + " 退出");
+
+				} else {
+					// 发送的是 消息
+					System.out.println("client say:"+message);
+					pass = true;
+				}
+
+				return pass;
+			}
+			
+			private List<String> string2list(String mes){
+				
+				String tmp = mes.substring(1, mes.length()-1);
+				List<String> lala = new ArrayList<String>();
+				for(String lal :tmp.split(",")){
+					lala.add(lal.trim());
+				}
+				return lala;
+			}
+			
+		    /**
+		     * 接收消息 （web 发送的命令）
+		     * <br> 忽略 消息头的消息长度，直接读消息体（文本）
+		     * @return 文本消息
+		     * @throws IOException
+		     */
+		    private String reciveText() throws IOException {
+		    	int readLen = dsin.readInt();
+		    	//byte[] bb = new byte[1024];
+		/*    	if(readLen != -1){
+		    		dsin.read(bb, 0, readLen);
+		    	}*/
+		    	String msg = dsin.readUTF();
+		    	return msg;
+		    }
+		    
+		    private void  sendText(String message) throws IOException{
+		    	int len = message.length();
+		    	dsout.writeInt(len);
+		    	dsout.flush();
+		    	dsout.writeUTF(message);
+		    	dsout.flush();
+		    	
+		    }
+	    	
+	    }
+		
+	}
+	
+
+    
+
+    
+/*    class SendThreadS4 implements Runnable{
+
+		@Override
+		public void run() {
+			int i = 0;
+			while(true){
+				try {
+					TimeUnit.SECONDS.sleep(5);
+					sendText("hello client "+ i++);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+					break;
+				} catch (IOException e) {
+					e.printStackTrace();
+					break;
+				}
+			}
+		}
+    	
+    }
+ */   
+
+    
+}
+
+
+

@@ -1,0 +1,8 @@
+package com.fy.msgsys.server.util;
+
+public final class ContansUtil {
+
+	private final static String test = "";
+	
+	
+}

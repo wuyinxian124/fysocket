@@ -1,0 +1,140 @@
+package edu.fy.com.ansyDemo;
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+public class Serveransydemo {
+
+    public static void main(String[] args) {
+
+        try {
+			new Serveransydemo().start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
+    }
+    
+    private void start() throws IOException{
+		ServerSocket server = new ServerSocket(8877);
+    	while(true){
+    		try {
+				new Thread(new ServerThread1(server.accept())).start();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	}
+    	
+    }
+    
+    class ServerThread1 implements Runnable{
+
+    	private Socket serverfork;
+    	
+    	public ServerThread1(Socket serverfork){
+    		this.serverfork = serverfork;
+    		System.out.println("接受一个连接……");
+    	}
+    	
+		@Override
+		public void run() {
+			try {
+	            BufferedReader in = new BufferedReader(new InputStreamReader(serverfork.getInputStream()));
+	            PrintWriter out=new PrintWriter(serverfork.getOutputStream());
+	            
+	            new ReciveTread1(in,out).start();
+	            new SendThread1(out).start();
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+    	
+    }
+
+}
+
+
+class SendThread1 extends Thread {
+
+	PrintWriter out;
+
+	public SendThread1(PrintWriter out) {
+		this.out = out;
+	}
+
+	@Override
+	public void run() {
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		int jj = 0;
+		try {
+			while (true) {
+
+				TimeUnit.SECONDS.sleep(7);
+				synchronized (out) {
+					out.print("Server  " + sf.format(new Date()) + "\n\t"
+							+ "hello client" + jj++ +" ;");
+					out.flush();
+				}
+
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
+
+class ReciveTread1 extends Thread {
+	BufferedReader in;
+	PrintWriter out;
+/*	Socket client;
+
+	public ReciveTread1( BufferedReader in,
+			PrintWriter out,  Socket client) {
+		this.in = in;
+		this.client = client;
+		this.out = out;
+	}*/
+	
+	public ReciveTread1(BufferedReader in,PrintWriter out){
+		this.in = in;
+		this.out = out;
+	}
+
+	@Override
+	public void run() {
+		try {
+			String info = "";
+			while (true) {
+
+				while ((info = in.readLine()) != null) {
+					System.out.println(info);
+					synchronized (out) {
+						out.print("ok recive: " + info.substring(12, info.length()) + " ** ");
+						out.flush();
+					}
+					//info = in.readLine();
+				}
+
+				if (in.readLine().equals("end")) {
+					break;
+				}
+			}
+			in.close();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

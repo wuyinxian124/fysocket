@@ -1,0 +1,207 @@
+package com.fy.msgsys.appclient.napi.core;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+
+
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+
+
+
+import com.fy.msgsys.appclient.api.exception.HandshakeWebsocketException;
+import com.fy.msgsys.appclient.api.util.Base64;
+import com.fy.msgsys.appclient.api.util.ByteBufferSwap;
+import com.fy.msgsys.appclient.api.util.ReceiveMsgQueue;
+import com.fy.msgsys.appclient.api.util.SendMsgQueue;
+import com.fy.msgsys.appclient.napi.core.handshake.HandshakeBuilder;
+import com.fy.msgsys.appclient.napi.core.handshake.Handshakedata;
+import com.fy.msgsys.appclient.napi.core.handshake.HandshakedataImpl1;
+import com.fy.msgsys.appclient.napi.interf.FeedbackInterf;
+
+/**
+ * 
+ * websocket 连接核心实现
+ * @author wurunzhou
+ *
+ */
+public class WebsocketClientImpl implements CodeWebsocketFBInter{
+
+	private boolean handshakeStatus  = false;
+	private boolean virifyStatus = false;
+	private FeedbackInterf feedbackInterf;
+	/**
+	 * 待发送消息队列
+	 */
+	public  SendMsgQueue sendMsgQueue  ;
+	/**
+	 * 待处理消息队列
+	 */
+	public  ReceiveMsgQueue receiveMsgQueue ;
+	
+	public WebsocketClientImpl(FeedbackInterf feedbackInterf){
+		this.feedbackInterf = feedbackInterf;
+		sendMsgQueue = new SendMsgQueue(5);
+		receiveMsgQueue = new ReceiveMsgQueue(5);
+	}
+	
+	public WebsocketClientImpl(FeedbackInterf feedbackInterf,boolean handshakeStatus,boolean virifyStatus){
+		this.feedbackInterf = feedbackInterf;
+		sendMsgQueue = new SendMsgQueue(5);
+		receiveMsgQueue = new ReceiveMsgQueue(5);
+		
+	}
+	
+
+	/**
+	 * 客户端读取IO消息
+	 * 解码之后，提示给用户
+	 * @param websocketmsg 从IO读取的websocket包
+	 */
+	public void  processMsgT(ByteBuffer websocketmsg,boolean handpass){
+//		System.out.println(""+ByteBufferSwap.byteBufferToString(msg));
+//		ByteBuffer rmsg = ByteBuffer.allocate(12);
+//		rmsg.put("新消息".getBytes());
+//		rmsg.flip();
+		if(!handpass){
+			// 握手回复 不要加密
+			new DeEncodeUtil(this).decodeWebsocket(websocketmsg,handpass);
+		}else{
+			new DeEncodeUtil(this).decodeWebsocket(websocketmsg,handpass);
+		}
+		
+		
+	}
+
+	/**
+	 * 提示用户有新消息
+	 */
+	public void readMsgT(ByteBuffer msg){
+
+		feedbackInterf.onMessageT(msg);
+
+		
+	}
+
+	@Override
+	public void encodeFine(ByteBuffer websocketMsg) {
+		
+	}
+
+	@Override
+	public void decodeFine(ByteBuffer msg) {
+		
+		if(!handshakeStatus){
+			try {
+				// 如果是握手返回信息
+				System.out.println("握手返回信息收到"+msg.capacity());
+				feedbackInterf.onHandshake(getAccessKey(dealHandshake(msg)));
+			} catch (HandshakeWebsocketException e) {
+				e.printStackTrace();
+			}
+		}else if(!virifyStatus){
+			// 用户验证信息返回
+			feedbackInterf.onVirify(msg,true);
+		}else{
+			// 普通消息
+			readMsgT(msg);
+		}
+		
+	}
+	
+	private HandshakeBuilder dealHandshake(ByteBuffer buf) throws HandshakeWebsocketException{
+
+		HandshakeBuilder handshake = new HandshakedataImpl1();
+		ByteBuffer src = ByteBuffer.allocate(buf.limit());
+		src.put(buf);
+		src.flip();
+		byte[] tmp = ByteBufferSwap.byteBufferToByte(src);
+		System.out.println(src.limit());
+		System.out.println(new String(tmp));
+		buf.position(0);
+		String line = readStringLine( buf );
+		if( line == null )
+			throw new HandshakeWebsocketException();
+
+		String[] firstLineTokens = line.split( " ", 3 );// eg. HTTP/1.1 101 Switching the Protocols
+		if( firstLineTokens.length != 3 ) {
+			throw new  HandshakeWebsocketException();
+		}
+
+		line = readStringLine( buf );
+		while ( line != null && line.length() > 0 ) {
+			String[] pair = line.split( ":", 2 );
+			if( pair.length != 2 )
+				throw new HandshakeWebsocketException();;
+			handshake.put( pair[ 0 ], pair[ 1 ].replaceFirst( "^ +", "" ) );
+			line = readStringLine( buf );
+		}
+		if( line == null )
+			throw new  HandshakeWebsocketException();;
+		return handshake;
+	
+	}
+	
+	
+	private String getAccessKey(Handshakedata response){
+
+		return response.getFieldValue( "Sec-WebSocket-Accept" );
+
+	}
+	
+	
+	private  String readStringLine( ByteBuffer buf ) {
+		ByteBuffer b = readLine( buf );
+		return b == null ? null : stringAscii( b.array(), 0, b.limit() );
+	}
+	
+	private  ByteBuffer readLine( ByteBuffer buf ) {
+		ByteBuffer sbuf = ByteBuffer.allocate( buf.remaining() );
+		byte prev = '0';
+		byte cur = '0';
+		while ( buf.hasRemaining() ) {
+			prev = cur;
+			cur = buf.get();
+			sbuf.put( cur );
+			if( prev == (byte) '\r' && cur == (byte) '\n' ) {
+				sbuf.limit( sbuf.position() - 2 );
+				sbuf.position( 0 );
+				return sbuf;
+
+			}
+		}
+		// ensure that there wont be any bytes skipped
+		buf.position( buf.position() - sbuf.position() );
+		return null;
+	}
+	
+	private  String stringAscii( byte[] bytes, int offset, int length ){
+		try {
+			return new String( bytes, offset, length, "ASCII" );
+		} catch ( UnsupportedEncodingException e ) {
+			throw new RuntimeException( e );
+		}
+	}
+
+	public boolean isHandshakeStatus() {
+		return handshakeStatus;
+	}
+
+	public void setHandshakeStatus(boolean handshakeStatus) {
+		this.handshakeStatus = handshakeStatus;
+	}
+
+	public boolean isVirifyStatus() {
+		return virifyStatus;
+	}
+
+	public void setVirifyStatus(boolean virifyStatus) {
+		this.virifyStatus = virifyStatus;
+	}
+	
+}

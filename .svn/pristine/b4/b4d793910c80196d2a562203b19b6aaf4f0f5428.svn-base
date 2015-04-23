@@ -1,0 +1,1109 @@
+package com.fy.msgsys.server;
+
+
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.StringReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.channels.SocketChannel;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Random;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+import com.fy.msgsys.server.util.SignChatroomUtil;
+import com.fy.msgsys.server.util.SocketConstant;
+import com.fy.msgsys.server.util.UserUtil;
+
+
+
+
+public class ServeransyVerify {
+
+    public static void main(String[] args) {
+
+        try {
+        	System.out.println("启动socketFy");
+        	new NormalforJavaServer().start();
+        	//new CreateUserUtil().start();
+			new ServeransyVerify().start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
+    }
+	private static final String TAG = "\r\n";
+	private static final int PORT = 8877;
+    
+    private void start() throws IOException{
+		ServerSocket server = new ServerSocket(PORT);
+System.out.println("websocket 监听 端口" + PORT);
+		Executor pool =
+			    Executors.newFixedThreadPool(2);
+		while (true) {
+			try {
+				final Socket ss = server.accept();
+				if (handlerShake0(ss))
+					pool.execute((new ServerThread1(ss)));
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
+		}
+    	
+    }
+    
+    private PrintWriter getWriter(Socket socket) throws IOException {
+        OutputStream socketOut = socket.getOutputStream();
+        return new PrintWriter(socketOut, true);
+    }
+    
+    public boolean handlerShake0(Socket serverfork) throws NoSuchAlgorithmException, IOException{
+    	boolean hasHandshake = false;
+    	 InputStream in = serverfork.getInputStream();
+         
+         PrintWriter pw = getWriter(serverfork);
+         //读入缓存
+         byte[] buf = new byte[1024];
+         //读到字节
+         int len = in.read(buf, 0, 1024);
+         //读到字节数组
+         byte[] res = new byte[len];
+         System.arraycopy(buf, 0, res, 0, len);
+         String key = new String(res);
+         if(key.indexOf("Key") > 0){
+             //握手
+             key = key.substring(0, key.indexOf("==") + 2);
+             key = key.substring(key.indexOf("Key") + 4, key.length()).trim();
+             key+= "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
+             MessageDigest md = MessageDigest.getInstance("SHA-1");  
+             md.update(key.getBytes("utf-8"), 0, key.length());
+             byte[] sha1Hash = md.digest();  
+                 sun.misc.BASE64Encoder encoder = new sun.misc.BASE64Encoder();  
+             key = encoder.encode(sha1Hash);  
+             pw.println("HTTP/1.1 101 Switching Protocols");
+             pw.println("Upgrade: websocket");
+             pw.println("Connection: Upgrade");
+             pw.println("Sec-WebSocket-Accept: " + key);
+             pw.println();
+             pw.flush();
+             hasHandshake = true;
+         }
+    	return hasHandshake;
+    }
+    
+	class ServerThread1 implements Runnable, socketCallbackInterface1 {
+
+		private Socket serverfork;
+
+		private Charset charset = Charset.forName("UTF-8");
+
+		public ServerThread1(Socket serverfork) {
+			this.serverfork = serverfork;
+
+		}
+
+		@Override
+		public void run() {
+			try {
+
+				DataInputStream ins = new DataInputStream(
+						serverfork.getInputStream());
+				DataOutputStream outs = new DataOutputStream(
+						serverfork.getOutputStream());
+				if (handlerShake1(ins, outs)) {
+					new Thread(new ReciveThread2(ins, this, outs)).start();
+					// new Thread(new SendThread2(outs,this)).start();
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		@Override
+		public void closeSocket() {
+
+			try {
+				if (serverfork != null)
+					serverfork.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		/**
+		 * 验证用户
+		 * <br> 用户ID，web服务器产生的验证码
+		 * @param ins
+		 * @param outs
+		 * @return
+		 */
+		private boolean handlerShake1(DataInputStream ins, DataOutputStream outs) {
+			// verify user
+
+			boolean pass = false;
+
+			try {
+
+				// 接收数据
+				byte[] first = new byte[1];
+				// 这里会阻塞
+				int read = ins.read(first, 0, 1);
+				if (read > 0) {
+					int b = first[0] & 0xFF;
+					// 1为字符数据，8为关闭socket
+					byte opCode = (byte) (b & 0x0F);
+
+					if (opCode == 8) {
+						// socket.getOutputStream().close();
+						closeSocket();
+					} else if (opCode == 1){
+						// 发送数据为文本格式
+						//msgType = 1;
+						// 握手消息只能是文本数据
+					} else if(opCode == 2){
+						// 如果是二进制格式的数据，用户验证无法
+						return false ;
+					} else {
+						return false ;
+						// 如果是ping  pong 过来的话 也不好意思
+					}
+					b = ins.read();
+					int payloadLength = b & 0x7F;
+					if (payloadLength == 126) {
+						byte[] extended = new byte[2];
+						ins.read(extended, 0, 2);
+						int shift = 0;
+						payloadLength = 0;
+						for (int i = extended.length - 1; i >= 0; i--) {
+							payloadLength = payloadLength
+									+ ((extended[i] & 0xFF) << shift);
+							shift += 8;
+						}
+
+					} else if (payloadLength == 127) {
+						byte[] extended = new byte[8];
+						ins.read(extended, 0, 8);
+						int shift = 0;
+						payloadLength = 0;
+						for (int i = extended.length - 1; i >= 0; i--) {
+							payloadLength = payloadLength
+									+ ((extended[i] & 0xFF) << shift);
+							shift += 8;
+						}
+					}
+
+					// 掩码
+					byte[] mask = new byte[4];
+					ins.read(mask, 0, 4);
+					int readThisFragment = 1;
+					ByteBuffer byteBuf = ByteBuffer
+							.allocate(payloadLength + 10);
+					// byteBuf.put("echo: ".getBytes("UTF-8"));
+					while (payloadLength > 0) {
+						int masked = ins.read();
+						masked = masked
+								^ (mask[(int) ((readThisFragment - 1) % 4)] & 0xFF);
+						byteBuf.put((byte) masked);
+						payloadLength--;
+						readThisFragment++;
+					}
+					byteBuf.flip();
+					if (verifyUser(byteBuf.array())) {
+						responseUser(byteBuf, outs, true, true);
+						pass = true;
+					} else {
+						closeSocket();
+					}
+
+					// printRes(byteBuf.array());
+					// ins.read(first, 0, 1);
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return pass;
+
+		}
+
+		private final boolean verifyUser(byte[] array) {
+			ByteArrayInputStream byteIn = new ByteArrayInputStream(array);
+			InputStreamReader reader = new InputStreamReader(byteIn,
+					charset.newDecoder());
+			int b = 0;
+			String res = "";
+			try {
+				while ((b = reader.read()) > 0) {
+					res += (char) b;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+System.out.println("获取登录用户发送用户名和验证码="+res);
+
+			//return userVerify(res.split(":"));
+//System.out.println("用户和验证码的间隔符="+SocketConstant.splitUV.getRssURL());
+			return verifyUser1(res.split(SocketConstant.splitUV.getRssURL()));
+
+		}
+
+		private final boolean verifyUser1(String[] lala) {
+			return UserUtil.getInstance().verify(lala[0], lala[1], serverfork);
+		}
+
+		public boolean responseUser(ByteBuffer byteBuf, OutputStream out,
+				boolean finalFragment, boolean ok) throws IOException {
+
+			byteBuf.clear();
+			if (ok)
+				byteBuf.put("ok".getBytes());
+			else
+				byteBuf.put("ack".getBytes());
+
+			byteBuf.flip();
+			// OutputStream out = socket.getOutputStream();
+			int first = 0x00;
+			// 是否是输出最后的WebSocket响应片段
+			if (finalFragment) {
+				first = first + 0x80;
+				first = first + 0x1;
+			}
+			out.write(first);
+
+			if (byteBuf.limit() < 126) {
+				out.write(byteBuf.limit());
+			} else if (byteBuf.limit() < 65536) {
+				out.write(126);
+				out.write(byteBuf.limit() >>> 8);
+				out.write(byteBuf.limit() & 0xFF);
+			} else {
+				// Will never be more than 2^31-1
+				out.write(127);
+				out.write(0);
+				out.write(0);
+				out.write(0);
+				out.write(0);
+				out.write(byteBuf.limit() >>> 24);
+				out.write(byteBuf.limit() >>> 16);
+				out.write(byteBuf.limit() >>> 8);
+				out.write(byteBuf.limit() & 0xFF);
+
+			}
+
+			// Write the content
+			out.write(byteBuf.array(), 0, byteBuf.limit());
+			out.flush();
+
+			return true;
+		}
+
+		private void test() {
+			
+		}
+
+		class ReciveThread2 implements Runnable {
+
+			private DataInputStream ins;
+			private socketCallbackInterface1 socketOptions;
+			private OutputStream out;
+			private Charset charset = Charset.forName("UTF-8");
+			private Queue<byte[]> fileContents = new LinkedList<byte[]>();
+			
+			public ReciveThread2(DataInputStream ins,
+					socketCallbackInterface1 socketOptions, OutputStream out) {
+				System.out.println("验证web登录用户,准备读取消息");
+				this.ins = ins;
+				this.socketOptions = socketOptions;
+				this.out = out;
+			}
+
+			
+			@Override
+			public void run() {
+				/**
+				 * %x0 表示一个后续帧 %x1 表示一个文本帧 // 1为字符数据， %x2 表示一个二进制帧 %x3-7
+				 * 为以后的非控制帧保留 %x8 表示一个连接关闭 8为关闭socket %x9 表示一个ping %xA 表示一个pong
+				 * %xB-F 为以后的控制帧保留
+				 */
+				try {
+
+					// 接收数据
+					byte[] first = new byte[1];
+					// 这里会阻塞
+					int read = ins.read(first, 0, 1);
+					// 浏览器在发送图片，等较大数据的时候，会分成多次。所以需加判断
+					boolean readOver = true;
+					boolean firstRead = true;
+					int msgType = 0;
+					int ilala = 0;
+					while (read > 0) {
+						int b = first[0] & 0xFF;
+						// 1为字符数据，8为关闭socket
+						byte opCode = (byte) (b & 0x0F);
+
+						if ((first[0] & 0x80) == 0) {
+							// 未读完
+							readOver = false;
+						} else {
+							// 读完
+							readOver = true;
+						}
+						if (opCode == 8) {
+							// socket.getOutputStream().close();
+							socketOptions.closeSocket();
+							break;
+						} else if (opCode == 1) {
+							// 发送数据为文本格式
+							msgType = 1;
+						} else if (opCode == 2) {
+							// 发送数据为二进制格式
+							msgType = 2;
+						}
+
+						int payloadLength = getPlayloadSize(ins);
+
+						if (msgType == 1) {
+							// 作为文本数据处理
+							first = dealText(payloadLength, ins, ilala);
+							if (first == null)
+								break;
+						} else if (msgType == 2) {
+							// 作为二进制数据处理，一般为图片
+							// 掩码
+							byte[] mask = new byte[4];
+							ins.read(mask, 0, 4);
+							int readThisFragment = 1;
+							// 存放文件名
+
+							if (readOver) {
+								if (firstRead) {
+									// 第一次就可以读完
+									System.out
+											.println("一次读完， " + payloadLength);
+									ByteBuffer byteBuf = ByteBuffer
+											.allocate(64);
+									ByteBuffer imagecontentBUf = ByteBuffer
+											.allocate(payloadLength);
+									imagecontentBUf.clear();
+									byteBuf.put("echo-一次读完: ".getBytes("UTF-8"));
+									byteBuf.put(createFileName().getBytes(
+											"UTF-8"));
+
+									boolean over = false;
+									int relen = 0;
+									ByteBuffer bheaderBuf = ByteBuffer
+											.allocate(30);
+									bheaderBuf.clear();
+									while (payloadLength > 0) {
+										int masked = ins.read();
+										masked = masked
+												^ (mask[(int) ((readThisFragment - 1) % 4)] & 0xFF);
+										// bb.put((byte) masked);
+										if (over) {
+											imagecontentBUf.put((byte) masked);
+										} else {
+											if ("#".getBytes()[0] == (byte) masked) {
+												relen++;
+												if (relen == 3) {
+													// 发送图片 用三个#
+													// 作为header和图片内容的分隔符
+													over = true;
+													// continue;
+												}
+											} else {
+												relen = 0;
+											}
+											bheaderBuf.put((byte) masked);
+										}
+										payloadLength--;
+										readThisFragment++;
+									}
+
+									bheaderBuf.flip();
+									byte[] bheader = new byte[bheaderBuf
+											.remaining()];
+									bheaderBuf.get(bheader);
+									String[] header = getHeader(bheader);
+									System.out.println("图片头信息" + header[0]
+											+ "," + header[1]);
+
+									byteBuf.flip();
+									System.out.println("图片长度："
+											+ imagecontentBUf.position());
+									imagecontentBUf.flip();
+									byte[] bcontent = new byte[imagecontentBUf
+											.remaining()];
+									imagecontentBUf.get(bcontent);
+									System.out.println("图片长度----："
+											+ imagecontentBUf.position());
+
+									// transferImage(header[0],header[1],bcontent);
+									// save2File2(imagecontentBUf.array());
+									// save2File2(bcontent);
+									saveImageTrans(header[0],header[1],bcontent);
+									responseClient(byteBuf, true);
+
+								} else {
+									// 最后一次读完
+									System.out.println("最后一次 读完");
+									ByteBuffer byteBuf = ByteBuffer
+											.allocate(64);
+									byteBuf.put("echo-最后一次 读完: "
+											.getBytes("UTF-8"));
+									byteBuf.put(createFileName().getBytes(
+											"UTF-8"));
+									ByteBuffer bb = ByteBuffer
+											.allocate(payloadLength);
+									bb.clear();
+									while (payloadLength > 0) {
+										int masked = ins.read();
+										masked = masked
+												^ (mask[(int) ((readThisFragment - 1) % 4)] & 0xFF);
+										// byteBuf.put((byte) masked);
+										bb.put((byte) masked);
+										payloadLength--;
+										readThisFragment++;
+									}
+									bb.flip();
+									byteBuf.flip();
+									addLastFile(bb.array());
+									responseClient(byteBuf, true);
+
+								}
+								firstRead = true;
+								ins.read(first, 0, 1);
+							} else {
+								if (firstRead) {
+									// 第一次还读不完 创建，但是不关 不回复
+									System.out.println(" 创建，但是不关 不回复");
+									ByteBuffer byteBuf = ByteBuffer
+											.allocate(payloadLength);
+									while (payloadLength > 0) {
+										int masked = ins.read();
+										masked = masked
+												^ (mask[(int) ((readThisFragment - 1) % 4)] & 0xFF);
+										byteBuf.put((byte) masked);
+										payloadLength--;
+										readThisFragment++;
+									}
+									byteBuf.flip();
+									createTmpFile(byteBuf.array());
+								} else {
+									// 中间读的几次 不创建也不关 不回复
+									System.out.println(" 不创建，也不关 不回复");
+									ByteBuffer byteBuf = ByteBuffer
+											.allocate(payloadLength);
+									while (payloadLength > 0) {
+										int masked = ins.read();
+										masked = masked
+												^ (mask[(int) ((readThisFragment - 1) % 4)] & 0xFF);
+										byteBuf.put((byte) masked);
+										payloadLength--;
+										readThisFragment++;
+									}
+									byteBuf.flip();
+									add2TmpFile(byteBuf.array());
+								}
+								firstRead = false;
+								ins.read(first, 0, 1);
+
+							}
+
+						} else {
+
+						}
+
+					}
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+	        /**
+	         * 打印图片消息头
+	         * @param src
+	         */
+	        private String[] getHeader(byte[] src){
+	        	System.out.println("图片头信息：");
+	        	return new String(src).split(SocketConstant.splitCI.getRssURL());
+	        }
+	        
+			/**
+			 * 转发二进制图片
+			 */
+			private void transferImage(String chatId,String isPublice,byte[] iamgeBuf ){
+				
+				
+
+				// 转发消息
+				// 根据互动室 查询用户 获得connection
+				// 如果图片过大，处理不了 直接不处理
+				
+				
+				List<String> olUsers = SignChatroomUtil.getInstance().sendList(chatId, isPublice);
+				if(olUsers == null)
+					return ;
+System.out.println("互动室 ‘" + chatId + "’ 在线用户有：" + olUsers);
+				for (String oluser : olUsers) {
+					try {
+						Socket connect;
+						if (((connect = UserUtil.getInstance().getConnet(oluser)) != null) && (connect instanceof Socket)) {
+							if(connect.isConnected()==true&&connect.isClosed() == false){
+								transferImage1(
+									true,
+									iamgeBuf, (chatId + SocketConstant.splitCIR.getRssURL()).getBytes(),
+									new DataOutputStream(connect
+											.getOutputStream()));
+System.out.println("转发图片…………………………给 " + oluser);
+							}
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			
+			
+			private void transferImage1(boolean finalFragment,byte[] contentBuf,byte[] headerBuf,DataOutputStream outs ) throws IOException{
+				//ByteBuffer rebackImageBuf = ByteBuffer.allocate(contentBuf.length+headerBuf.length);
+				ByteBuffer rebackImageBuf = ByteBuffer.allocate(contentBuf.length);
+				// 转发图片 添加图片头 格式 互动室视图ID##图片内容
+				//rebackImageBuf.put(headerBuf);
+				rebackImageBuf.put(contentBuf);
+				rebackImageBuf.flip();
+System.out.println(rebackImageBuf.limit()+","+rebackImageBuf.position());			
+				
+				if(rebackImageBuf.limit() > Math.pow(2, 31))
+					return ;
+				int first = 0x00;
+				// 是否是输出最后的WebSocket响应片段
+				if (finalFragment) {
+					first = first + 0x80;   // 确认是最后一个片段
+					first = first + 0x2;	// 传输的是二进制格式数据
+				}
+				outs.write(first);
+
+				if (rebackImageBuf.limit() < 126) {
+					outs.write(rebackImageBuf.limit());
+				} else if (rebackImageBuf.limit() < 65536) {
+					outs.write(126);
+					outs.write(rebackImageBuf.limit() >>> 8);
+					outs.write(rebackImageBuf.limit() & 0xFF);
+				} else {
+					// Will never be more than 2^31-1
+					outs.write(127);
+					//outs.write(0x00); 	// 用0补充两个扩展长度
+					//outs.write(0x00);		// 用0补充两个扩展长度
+					outs.write(0);
+					outs.write(0);
+					outs.write(0);
+					outs.write(0);
+					outs.write(rebackImageBuf.limit() >>> 24);
+					outs.write(rebackImageBuf.limit() >>> 16);
+					outs.write(rebackImageBuf.limit() >>> 8);
+					outs.write(rebackImageBuf.limit() & 0xFF);
+
+				}
+				
+				// Write the content
+				outs.write(rebackImageBuf.array(), 0, rebackImageBuf.limit());
+				outs.flush();
+			}
+
+
+			/**
+			 * 转发文本消息到对应在线用户
+			 * @param chatId 互动室视图ID
+			 * @param isPublice 是否是公共互动室，1 为是，0 为否
+			 * @param byteBuf
+			 */
+			private void transferMessage(String chatId, String isPublice, ByteBuffer byteBuf) {
+				// 转发消息
+				// 根据互动室 查询用户 获得connection
+				List<String> olUsers = SignChatroomUtil.getInstance().sendList(chatId, isPublice);
+				if(olUsers == null)
+					return ;
+System.out.println("互动室 ‘" + chatId + "’ 在线用户有：" + olUsers);
+				for (String oluser : olUsers) {
+					try {
+						Socket connect;
+						if (((connect = UserUtil.getInstance().getConnet(oluser)) != null) && (connect instanceof Socket)) {
+							if(connect.isConnected()==true&&connect.isClosed() == false){
+							transferMessage1(
+									true,
+									byteBuf,
+									new DataOutputStream(connect
+											.getOutputStream()));
+System.out.println("转发…………………………给 " + oluser);
+							}
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+
+			}
+
+			
+			private void transferMessage(String lala,ByteBuffer byteBuf) {
+				// 转发消息
+				// 根据互动室 查询用户 获得connection
+				String chatid = lala;
+				List<String> olUsers = SignChatroomUtil.getInstance().sendList(
+						chatid);
+				for (String oluser : olUsers) {
+					try {
+						Socket connect;
+						if ((connect = UserUtil.getInstance().getConnet(oluser)) != null) {
+
+							if (connect.isClosed() == false
+									&& connect.isConnected() == true)
+								transferMessage1(
+										true,
+										byteBuf,
+										new DataOutputStream(connect
+												.getOutputStream()));
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+
+			}
+
+			/**
+			 * 转发文本消息的具体执行
+			 * @param finalFragment
+			 * @param byteBuf
+			 * @param outs
+			 * @throws IOException
+			 */
+			private void transferMessage1(boolean finalFragment,
+					ByteBuffer byteBuf, DataOutputStream outs)
+					throws IOException {
+
+				// OutputStream out = socket.getOutputStream();
+				int first = 0x00;
+				// 是否是输出最后的WebSocket响应片段
+				if (finalFragment) {
+					first = first + 0x80;
+					first = first + 0x1;
+				}
+				outs.write(first);
+
+				if (byteBuf.limit() < 126) {
+					outs.write(byteBuf.limit());
+				} else if (byteBuf.limit() < 65536) {
+					outs.write(126);
+					outs.write(byteBuf.limit() >>> 8);
+					outs.write(byteBuf.limit() & 0xFF);
+				} else {
+					// Will never be more than 2^31-1
+					outs.write(127);
+					outs.write(0);
+					outs.write(0);
+					outs.write(0);
+					outs.write(0);
+					outs.write(byteBuf.limit() >>> 24);
+					outs.write(byteBuf.limit() >>> 16);
+					outs.write(byteBuf.limit() >>> 8);
+					outs.write(byteBuf.limit() & 0xFF);
+
+				}
+
+				// Write the content
+				outs.write(byteBuf.array(), 0, byteBuf.limit());
+				outs.flush();
+				//System.out.println("转发…………………………");
+			}
+
+			private void responseClient(ByteBuffer byteBuf,
+					boolean finalFragment) throws IOException {
+				// OutputStream out = socket.getOutputStream();
+				int first = 0x00;
+				// 是否是输出最后的WebSocket响应片段
+				if (finalFragment) {
+					first = first + 0x80;
+					first = first + 0x1;
+				}
+				out.write(first);
+
+				if (byteBuf.limit() < 126) {
+					out.write(byteBuf.limit());
+				} else if (byteBuf.limit() < 65536) {
+					out.write(126);
+					out.write(byteBuf.limit() >>> 8);
+					out.write(byteBuf.limit() & 0xFF);
+				} else {
+					// Will never be more than 2^31-1
+					out.write(127);
+					out.write(0);
+					out.write(0);
+					out.write(0);
+					out.write(0);
+					out.write(byteBuf.limit() >>> 24);
+					out.write(byteBuf.limit() >>> 16);
+					out.write(byteBuf.limit() >>> 8);
+					out.write(byteBuf.limit() & 0xFF);
+
+				}
+
+				// Write the content
+				out.write(byteBuf.array(), 0, byteBuf.limit());
+				out.flush();
+			}
+
+	        private int getPlayloadSize( InputStream in) throws IOException{
+				int b = in.read();
+				int payloadLength = b & 0x7F;
+				if (payloadLength == 126) {
+					byte[] extended = new byte[2];
+					in.read(extended, 0, 2);
+					int shift = 0;
+					payloadLength = 0;
+					for (int i = extended.length - 1; i >= 0; i--) {
+						payloadLength = payloadLength
+								+ ((extended[i] & 0xFF) << shift);
+						shift += 8;
+					}
+
+				} else if (payloadLength == 127) {
+					byte[] extended = new byte[8];
+					in.read(extended, 0, 8);
+					int shift = 0;
+					payloadLength = 0;
+					for (int i = extended.length - 1; i >= 0; i--) {
+						payloadLength = payloadLength
+								+ ((extended[i] & 0xFF) << shift);
+						shift += 8;
+					}
+				}
+				
+				return payloadLength;
+	        }
+	        
+	    	private String getCurrentTime(String format) {
+	    		format = format == null ? "yyyy-MM-dd HH:mm:ss" : format;
+	    		Calendar c = Calendar.getInstance();
+	    		SimpleDateFormat simpleDateTimeFormat = new SimpleDateFormat(format);
+	    		c = Calendar.getInstance(Locale.CHINESE);
+	    		return simpleDateTimeFormat.format(c.getTime());// 输出这种形式 2008-03-12 10:11:21
+	    	}
+
+	        private final static int everyONESIZE = 70*1024;
+	        private FileChannel fcout = null;
+	        
+	        private void addByte2Queue(byte[] src){
+	        	int relen = src.length;
+	        	int times = 0;
+	        	//byte[] data = new byte[everyONESIZE];
+	        	while(true){
+	        		
+	        		if (relen <= everyONESIZE){
+	        			byte[] data = new byte[relen];
+	        			System.arraycopy(src, times*everyONESIZE, data, 0, relen);
+	        			fileContents.add(data);
+	        			break;
+	        		}
+	        		byte[] data = new byte[everyONESIZE];
+	        		System.arraycopy(src, times*everyONESIZE, data, 0, everyONESIZE);
+	        		fileContents.add(data);
+	        		relen = relen - everyONESIZE;
+	        		times ++;
+	        	}
+
+	        }
+	        /**
+	         * 创建文件
+	         * @throws FileNotFoundException 
+	         */
+	        private void createTmpFile(byte[] bs) throws FileNotFoundException{
+	        	String savePath = "e://lala//" + createFileName();
+
+				System.out.println("图片保存路径：" + savePath);
+				FileOutputStream fout = new FileOutputStream(savePath);
+				fcout = fout.getChannel();
+				addByte2Queue(bs);
+	        }
+	        
+	        /**
+	         * 第n次接收
+	         * @param bs
+	         */
+	        private void add2TmpFile(byte[] bs){
+	        	addByte2Queue(bs);
+	        }
+	        
+	        /**
+	         * 最后一次接收 接收完成
+	         * 接收完成之后  转发给所有在线用户
+	         * @param bs
+	         * @throws IOException 
+	         */
+	        private void addLastFile(byte[] bs) throws IOException{
+	        	addByte2Queue(bs);
+	            while(fileContents.size()>0){
+	            	byte[] element = fileContents.poll(); // 同remove()
+	            	ByteBuffer bbb = ByteBuffer.allocate(everyONESIZE);
+	            	bbb.put(element);
+	            	bbb.flip();
+	            	fcout.write(bbb);
+	            }
+	        	fcout.close();
+	        	
+	        }
+	        
+	        
+	        /**
+	         * 二进制图片 一次读取完成
+	         * 接收完成之后，转发给所有在线用户
+	         * @param bytes
+	         * @throws IOException
+	         */
+			private void saveImageTrans(String chatroomID,String isPublic,byte[] bytes) throws IOException {
+				ByteBuffer bytebuf = ByteBuffer.allocate(bytes.length);
+				bytebuf.put(bytes);
+				bytebuf.flip();
+				System.out.println(bytebuf.limit()+","+bytebuf.position());
+				String savePath = "e://lala//" + createFileName();
+				// 服务器保存路径
+				// String savePath = System.getProperty("wtbsyqd.root")+
+				// "screen_temp/"+ fileName;
+				System.out.println("图片保存路径：" + savePath);
+				FileOutputStream fout = new FileOutputStream(savePath);
+				FileChannel fcout = fout.getChannel();
+				fcout.write(bytebuf);
+				transferImage(chatroomID,isPublic,readSomeFile());
+				fout.close();
+			}
+			
+			private byte[] readSomeFile() throws IOException{
+				String infile = "e://lala//" + "wtb_screen20150203_165724_5089.png";
+			    FileInputStream fin = new FileInputStream( infile );
+			    FileChannel fcin = fin.getChannel();
+			    
+				return readRequest(fcin);
+			}
+			
+			private final static int BUFFER_SIZE = 1024;
+		    /**
+		     * 读取文件
+		     * @param sc 套接通道
+		     */
+		    private  byte[] readRequest(FileChannel sc) throws IOException {
+		        ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
+		        int off = 0;
+		        int r = 0;
+		        byte[] data = new byte[BUFFER_SIZE * 10];
+
+		        while ( true ) {
+		            buffer.clear();
+		            r = sc.read(buffer);
+		            if (r == -1) break;
+		           
+		            if ( (off + r) > data.length) {
+		                data = grow(data, BUFFER_SIZE * 2);
+		            }
+		            byte[] buf = buffer.array();
+		            System.arraycopy(buf, 0, data, off, r);
+		            off += r;
+		        }
+		        byte[] req = new byte[off];
+		        System.arraycopy(data, 0, req, 0, off);
+		        System.out.println("read png over");
+		        return req;
+		    }
+		    /**
+		     * 数组扩容
+		     * @param src byte[] 源数组数据
+		     * @param size int 扩容的增加量
+		     * @return byte[] 扩容后的数组
+		     */
+		    private  byte[] grow(byte[] src, int size) {
+		        byte[] tmp = new byte[src.length + size];
+		        System.arraycopy(src, 0, tmp, 0, src.length);
+		        return tmp;
+		    }
+			
+	        /**
+	         * 二进制图片 一次读取完成
+	         * @param bytes
+	         * @throws IOException
+	         */
+			private void save2File2(byte[] bytes) throws IOException {
+				ByteBuffer bytebuf = ByteBuffer.allocate(bytes.length);
+				bytebuf.put(bytes);
+				bytebuf.flip();
+				System.out.println(bytebuf.limit()+","+bytebuf.position());
+				String savePath = "e://lala//" + createFileName();
+				// 服务器保存路径
+				// String savePath = System.getProperty("wtbsyqd.root")+
+				// "screen_temp/"+ fileName;
+				System.out.println("图片保存路径：" + savePath);
+				FileOutputStream fout = new FileOutputStream(savePath);
+				FileChannel fcout = fout.getChannel();
+				fcout.write(bytebuf);
+//				transferImage();
+				fout.close();
+			}
+	        
+			
+	    	private String createFileName(){
+	    		//图片名: 以“wetoband截屏时分秒_4位随机数.jpg”命名
+	    		StringBuffer fileName;
+	            fileName = new StringBuffer();
+	            fileName.append("wtb_screen");
+	            fileName.append(this.getCurrentTime("yyyyMMdd_HHmmss"));
+	            Random random = new Random();
+	            fileName.append("_" + random.nextInt(10000));
+	            fileName.append(".png");
+	    		return fileName.toString();
+	    	}
+	    	
+	    	/**
+	    	 * 处理文本消息
+	    	 * <br> 接收到文本消息之后，转发到所有在线用户
+	    	 * @param payloadLength
+	    	 * @param in
+	    	 * @param ilala 避免浏览器突然关闭，造成死循环
+	    	 * @return  下一次读准备
+	    	 * @throws IOException
+	    	 */
+	        private byte[] dealText(int payloadLength,InputStream in ,int ilala ) throws IOException{
+				// 掩码
+	        	byte[] first = new byte[1];
+				byte[] mask = new byte[4];
+				in.read(mask, 0, 4);
+				int readThisFragment = 1;
+				ByteBuffer byteBuf = ByteBuffer.allocate(payloadLength+30);
+				//byteBuf.put("echo-dealText: ".getBytes("UTF-8"));
+				while (payloadLength > 0) {
+					int masked = in.read();
+					masked = masked
+							^ (mask[(int) ((readThisFragment - 1) % 4)] & 0xFF);
+					byteBuf.put((byte) masked);
+					payloadLength--;
+					readThisFragment++;
+				}
+				byteBuf.flip();
+
+				byte[] msgbytes = new byte[byteBuf.remaining()];
+				byteBuf.get(msgbytes);
+				/**
+				 * liuyan update 2015-1-29  
+				 * 修改消息信息，添加是否是公共互动室的属性
+				 * 修改前：chatId##msgContent
+				 * 修改后：chatId##isPublice##msgContent
+				 * isPublic 是否是公共互动室 , "1"：是; 不是："0"
+				 * **/
+				
+				String msgStr = this.getMsg(msgbytes);
+				
+				String[] msgInfos = msgStr.split(SocketConstant.splitCT.getRssURL());
+				String chatId = msgInfos[0];
+				String isPublice = msgInfos[1];
+				if("".equals(chatId)){
+					if(ilala++ > 5) return null;
+				}else {
+					transferMessage(chatId, isPublice, byteBuf);
+					ilala = 0;
+				}
+				
+				/********liuyan update 2015-1-29 *********/
+				
+				in.read(first, 0, 1);
+				return first;
+	        }
+	        
+			/**
+			 * 获得消息字符串
+			 * @param array
+			 * @return
+			 */
+			private String getMsg(byte[] array){
+				if((int)array[0] == 1002){
+					return null;
+				}
+				
+				ByteArrayInputStream byteIn = new ByteArrayInputStream(array);
+				InputStreamReader reader = new InputStreamReader(byteIn,
+						charset.newDecoder());
+				int b = 0;
+				String res = "";
+				try {
+					while ((b = reader.read()) > 0) {
+						res += (char) b;
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+System.out.println("消息："+res);
+				return res;
+			}
+			
+			private String printRes(byte[] array) {
+				ByteArrayInputStream byteIn = new ByteArrayInputStream(array);
+				InputStreamReader reader = new InputStreamReader(byteIn,
+						charset.newDecoder());
+				int b = 0;
+				String res = "";
+				try {
+					while ((b = reader.read()) > 0) {
+						res += (char) b;
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+System.out.println(res);
+				return res.substring(0,res.indexOf("##"));
+
+		
+			}
+
+		}
+
+	}
+    
+    
+    
+    interface socketCallbackInterface1{
+    	public void closeSocket();
+    }
+
+}
+
+

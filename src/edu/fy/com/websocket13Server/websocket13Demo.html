@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Web Socket Demo --  EchoClient</title>
+<meta charset="utf-8">
+</head>
+<script type="text/javascript">
+    var websocket = null;
+    function connect(){
+        var msg = document.getElementById("msg");
+        try{
+            var readyState = new Array("正在连接", "已建立连接", "正在关闭连接"
+                        , "已关闭连接");
+            var host = "ws://localhost:8877";
+            websocket = new WebSocket(host);
+            websocket.onopen = function(){
+                msg.innerHTML += "<p>Socket状态： " + readyState[websocket.readyState] + "</p>";
+            }
+            websocket.onmessage = function(event){
+                msg.innerHTML += "<p>接收信息： " + event.data + "</p>";
+            }
+            websocket.onclose　= function(){
+                msg.innerHTML += "<p>Socket状态： " + readyState[websocket.readyState] + "</p>";
+            }
+            msg = document.getElementById("msg");
+            msg.innerHTML += "<p>Socket状态： " + readyState[websocket.readyState] + "</p>";
+        }catch(exception){
+            msg.innerHTML += "<p>有错误发生</p>";
+        }
+    }
+ 
+    function send(){
+        var msg = document.getElementById("msg");
+        var text = document.getElementById("text").value;
+        if(text == ""){
+            msg.innerHTML += "<p>请输入一些文字</p>";
+            return;
+        }
+        try{
+            websocket.send(text);
+            msg.innerHTML += "<p>发送数据:  " + text + "</p>";
+        }catch(exception){
+            msg.innerHTML += "<p>发送数据出错</p>";
+        }
+        document.getElementById("text").value = "";
+    }
+ 
+    function disconnect(){
+        websocket.close();
+    }
+</script>
+<body>
+    <h1>WebSocket客户端实例</h1>
+    <div id="msg" style="height: 300px;"></div>
+    <p>请输入一些文字</p>
+    <input type="text" id="text"/>
+    <button id="connect" onclick="connect();">建立连接</button>
+    <button id="send" onclick="send();">发送数据</button>
+    <button id="disconnect" onclick="disconnect();">断开连接</button>
+</body>
+</html>

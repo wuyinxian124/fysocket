@@ -1,0 +1,27 @@
+package com.fy.msgsys.appclient.napi;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+import com.fy.msgsys.appclient.api.exception.ConnectWebsocketException;
+import com.fy.msgsys.appclient.napi.service.APPClient;
+
+public class StartClientMain {
+
+	public static void main(String[] args) {
+
+
+		try {
+			APPClient client = new APPClient("localhost", 8876);
+			client.connection();
+			client.virify("usercode", "virifycode");
+			client.sendMsg(null,100,5);
+		} catch (ConnectWebsocketException | IOException | URISyntaxException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+
+}

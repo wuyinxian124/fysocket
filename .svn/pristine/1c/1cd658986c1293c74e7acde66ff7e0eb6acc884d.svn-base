@@ -1,0 +1,8 @@
+package com.fy.msgsys.client.api;
+
+public interface IClientCallinface {
+
+	public void onMessage(String message);
+
+	public void onError(String e);
+}

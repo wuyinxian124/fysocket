@@ -1,0 +1,72 @@
+package com.fy.msgsys.server.util;
+
+import java.net.Socket;
+import java.util.*;
+import java.util.concurrent.*;
+
+public final class UserUtil {
+
+	private static UserUtil UV;
+	private static  Map<String, Object> MAPUSER ;
+	private static Map<String ,Socket> MAPUSERCON;
+	
+	private UserUtil(){
+		MAPUSER = new ConcurrentHashMap<String, Object>();
+		MAPUSERCON = new ConcurrentHashMap<String, Socket>();
+	}
+	
+	public synchronized static UserUtil getInstance(){
+		if(UV == null)
+			UV = new UserUtil();
+		return UV;
+	}
+	
+
+	public  void add(String userkey,String verifyCode){
+		MAPUSER.put(userkey, verifyCode);
+		System.out.println("put "+userkey + " in server");
+	}
+	
+    public void userLoginOut(String userkey){
+    	// 用户退出  1. 待登录用户  2. 已登录用户
+    	if(MAPUSER.containsKey(userkey)){
+    		MAPUSER.remove(userkey);
+    	}
+    	if(MAPUSERCON.containsKey(userkey)/*&&(MAPUSERCON.get(userkey) instanceof Socket)*/){
+    		MAPUSERCON.remove(userkey);
+    	}
+    }
+	
+    /**
+     * 用户登录验证
+     * <br> 服务器验证用户ID是否存在，如果用户ID存在
+     * 则判断验证码是否存在，然后再判断用户ID和验证码是否匹配
+     * <br> 如果用户ID和验证码匹配 那么服务器缓存当前用户和用户与socketFy socket连接对象。
+     * @param userkey 用户ID
+     * @param verifyCode web产生的验证码
+     * @param connetion 当前用户的socket连接对象
+     * @return
+     */
+	public synchronized  boolean verify(String userkey,String verifyCode,Socket connetion){
+		if(userkey == null || verifyCode == null || "".equals(userkey )||  "".equals(verifyCode))
+			return false;
+		
+		boolean pass = false;
+		String lal ;
+		if(( lal = (String) MAPUSER.get(userkey) )!= null && verifyCode.equals(lal)){
+			MAPUSER.remove(userkey);
+			MAPUSERCON.put(userkey, connetion);
+			pass = true;
+		}
+		return pass;
+	}
+	
+	public  void iterUser(){
+	    //Iterator<String> it1 = MAPUSER.keySet().iterator();
+	    System.out.println("myMap =="+MAPUSER);
+	}
+	
+	public Socket getConnet(String userKey){
+		return MAPUSERCON.containsKey(userKey)? MAPUSERCON.get(userKey):null;
+	}
+}

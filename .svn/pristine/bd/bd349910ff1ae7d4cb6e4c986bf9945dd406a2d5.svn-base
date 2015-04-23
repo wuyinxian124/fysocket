@@ -1,0 +1,39 @@
+package com.fy.msgsys.appclient.napi.core.handshake;
+
+import java.nio.ByteBuffer;
+
+public class DealHandshake implements Runnable {
+
+	private HandshakeListener handshake ;
+	
+	
+	
+	public DealHandshake(HandshakeListener handshake){
+		this.handshake =  handshake;
+	}
+	
+	
+	public void sendHandshake(){
+		
+		
+		this.handshake.sendHSOK();
+	}
+	
+	private byte[] produceHand(){
+		
+		
+		
+		return null;
+	}
+	private byte[] produceAccessKey(){
+		
+		return null;
+	}
+
+
+	@Override
+	public void run() {
+		
+		
+	}
+}

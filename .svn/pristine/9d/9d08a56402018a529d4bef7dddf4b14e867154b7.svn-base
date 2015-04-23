@@ -1,0 +1,32 @@
+package com.fy.msgsys.appclient.napi;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.concurrent.TimeUnit;
+
+import com.fy.msgsys.appclient.api.exception.ConnectWebsocketException;
+import com.fy.msgsys.appclient.api.exception.HandshakeWebsocketException;
+import com.fy.msgsys.appclient.napi.service.APPClient;
+
+public class StartClientMain {
+
+	public static void main(String[] args) {
+
+		//new URI("ws://localhost:8887")
+		try {
+			APPClient client = new APPClient("localhost", 8877);
+			client.connection();
+			TimeUnit.SECONDS.sleep(120);
+			client.virify("usercode", "virifycode");
+			TimeUnit.SECONDS.sleep(5);
+			client.sendMsg(null,100,5);
+		} catch (ConnectWebsocketException | IOException | URISyntaxException | HandshakeWebsocketException | InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+
+}

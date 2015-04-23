@@ -1,0 +1,176 @@
+package com.fy.msgsys.server.util.advanced;
+
+import java.net.Socket;
+import java.util.*;
+import java.util.concurrent.locks.*;
+
+
+public final class UserUtil1 {
+
+	// 支持单例
+	private static UserUtil1 UV;
+	// 待登录用户以及验证码(为了保持数据在单例模式下不失真，存储变量用static 修饰)
+	private static  Map<String, Object> MAPUSER ;
+	// 已登录用户和连接（socket）
+	private static Map<String, Map<String, Socket>> MAPUSERCON;
+	// 
+	private Map<String, Socket> URLCON;
+	
+	// 利用读写锁来保持数据的一致性。
+	private ReadWriteLock lock ;
+	
+	
+	private UserUtil1(){
+		// 初始化存储
+		MAPUSER = new HashMap<String, Object>();
+		MAPUSERCON = new HashMap<String, Map<String, Socket>>();
+		lock = new ReentrantReadWriteLock(true);
+	}
+	
+	
+	/**
+	 * 获取单例对象
+	 * @return
+	 */
+	public synchronized static UserUtil1 getInstance(){
+		if(UV == null)
+			UV = new UserUtil1();
+		return UV;
+	}
+	
+	/**
+	 * 添加待登录用户
+	 * @param userkey
+	 * @param verifyCode
+	 */
+	public void add(String userkey,String verifyCode){
+		// 加锁
+		lock.writeLock().lock();
+		MAPUSER.put(userkey, verifyCode);
+		// 解锁
+		lock.writeLock().unlock();
+System.out.println("待登录用户  "+userkey + " 添加到消息服务器");
+	}
+	
+	/** liuysn_gotoMessageCenter
+	 * // 用户退出  1. 待登录用户  2. 已登录用户
+	 * @param userkey
+	 */
+    public void userLoginOut(String userkey){
+    	
+    	if(MAPUSER.containsKey(userkey)){
+    		lock.writeLock().lock();
+    		MAPUSER.remove(userkey);
+    		lock.writeLock().unlock();
+System.out.println("用户 " + userkey + " 退出（暂未登录）");
+    	}
+    	if(MAPUSERCON.containsKey(userkey)/*&&(MAPUSERCON.get(userkey) instanceof Socket)*/){
+    		lock.writeLock().lock();
+    		MAPUSERCON.remove(userkey);
+    		lock.writeLock().unlock();
+System.out.println("用户 " + userkey + " 退出（已登录）");
+    	}
+    }
+	
+    /**
+     *  用户登录消息系统
+     *  <br> 用户已经通过第一次握手（websocket协议规定的）
+     *  <br> 现在进行第二次握手（验证用户），通过用户ID和验证码，确认其已经登录吾托帮
+     *  验证用户，如果验证通过 存储用户id:socket 键值对
+     * @param userkey 用户ID
+     * @param verifyCode 用户验证码，该验证码在用户登录吾托帮的时候，由吾托帮产生并提交给消息系统
+     * @param url 用户所访问的url
+     * @param connetion  用户（客户端）与消息服务器的连接对象（socket）
+     * @return
+     */
+	public boolean verify(String userkey, String verifyCode, String url, Socket connetion){
+		
+		if(userkey == null || verifyCode == null || "".equals(userkey )||  "".equals(verifyCode))
+			return false;
+		
+		boolean pass = false;
+		String lal ;
+		if(MAPUSER.get(userkey) == null || 
+				(( lal = (String) MAPUSER.get(userkey) )!= null && verifyCode.equals(lal)) ){
+			// 将用户ID从待登录缓存中删除
+//			MAPUSER.remove(userkey);
+			// 将socket 连接对象保存在缓存中
+			if(MAPUSERCON.get(userkey) == null){
+				URLCON = new HashMap<String, Socket>();
+				lock.writeLock().lock();
+				
+				URLCON.put(url, connetion);
+				MAPUSERCON.put(userkey, URLCON);
+				
+				lock.writeLock().unlock();
+			}else{
+				lock.writeLock().lock();
+				
+				URLCON.put(url, connetion);
+				
+				lock.writeLock().unlock();
+			}
+			pass = true;
+			System.out.println("用户  ‘"+ userkey +"’ 登录验证通过");
+
+		} else{
+			lock.writeLock().lock();
+			
+			MAPUSER.remove(userkey);
+			MAPUSERCON.remove(userkey);
+			
+			lock.writeLock().unlock();
+			System.out.println("用户  ’"+ userkey +"‘ 登录验证不 bu通过");
+		}
+
+		return pass;
+	}
+	
+	
+	/**
+	 * 获取消息系统目前在线的所有用户
+	 * @return
+	 */
+	public synchronized Set<String> getOlUser(){
+		return MAPUSERCON.keySet();
+	}
+	
+	/**
+	 * 通过用户ID ，获取用户在消息系统的连接对象 （socket）
+	 * @param userKey 
+	 * @return socket连接集合
+	 */
+	public List<Socket> getConnets(String userKey){
+		List<Socket> conections = new ArrayList<Socket>();
+		lock.readLock().lock();
+		
+		Map<String, Socket> urlCon = MAPUSERCON.get(userKey);
+		
+		lock.readLock().unlock();
+		if(urlCon == null){
+			return null;
+		}
+		for(String key : urlCon.keySet()){
+			conections.add(urlCon.get(key));
+		}
+		return conections;
+	}
+	
+	/**
+	 * 通过用户ID和url ，获取用户在消息系统的连接对象 （socket）
+	 * @param userKey 
+	 * @param url
+	 * @return socket连接
+	 */
+	public Socket getConnet(String userKey, String url){
+		lock.readLock().lock();
+		
+		Map<String, Socket> urlCon = MAPUSERCON.get(userKey);
+		
+		lock.readLock().unlock();
+		if(urlCon != null){
+			return urlCon.get(url);
+		}
+		return null;
+	}
+}

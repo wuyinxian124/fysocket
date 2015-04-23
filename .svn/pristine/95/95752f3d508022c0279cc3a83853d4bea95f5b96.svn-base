@@ -1,0 +1,5 @@
+package com.fy.msgsys.appclient.api.exception;
+
+public class HandshakeWebsocketException extends CommonWebsocketException{
+
+}

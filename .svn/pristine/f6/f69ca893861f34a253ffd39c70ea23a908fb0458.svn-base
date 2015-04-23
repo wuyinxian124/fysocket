@@ -1,0 +1,276 @@
+package com.fy.msgsys.appclient.napi.abs;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.Socket;
+import java.net.URI;
+import java.net.URL;
+import java.nio.ByteBuffer;
+import java.util.List;
+
+import com.fy.msgsys.appclient.api.exception.ConnectWebsocketException;
+import com.fy.msgsys.appclient.api.exception.IllegalWebsocketException;
+import com.fy.msgsys.appclient.napi.core.WebsocketClientImpl;
+import com.fy.msgsys.appclient.napi.core.WebsocketCoreInterf;
+import com.fy.msgsys.appclient.napi.interf.FeedbackInterf;
+import com.fy.msgsys.appclient.napi.interf.WebsocketClientInterf;
+
+public abstract class  APPClientAbs implements Runnable,WebsocketCoreInterf,FeedbackInterf,WebsocketClientInterf{
+
+	private WebsocketClientImpl coreClient;
+
+	/**
+	 * The URI this channel is supposed to connect to.
+	 */
+	protected URI uri = null;
+	private int connectTimeout = 0;
+	private Socket socket = null;
+
+	private InputStream istream;
+
+	private OutputStream ostream;
+	
+	private Proxy proxy = Proxy.NO_PROXY;
+	
+	private Thread writeIOThread;
+	private Thread readIOThread;
+	
+	public APPClientAbs(URI url){
+		this.uri = url;
+		this.coreClient = new WebsocketClientImpl(this);
+		
+	}
+	
+	public APPClientAbs(String host ,int port){
+		
+		this.coreClient = new WebsocketClientImpl(this);
+		
+	}
+
+	@Override
+	public void virify(String userKey, String virifyCode) throws IOException,
+			ConnectWebsocketException {
+		System.out.println("发送用户验证消息");
+		// 验证用户之前 先要开启发送队列
+		coreClient.sendMsgQueue.setPendingStatus(true);
+	}
+
+
+	@Override
+	public void connection() {
+		if( writeIOThread != null )
+			throw new IllegalStateException( "WebSocketClient objects are not reuseable" );
+		writeIOThread = new Thread( this );
+		// 启动client线程
+		writeIOThread.start();
+		
+	}
+
+	private int getPort() {
+		int port = uri.getPort();
+//		if( port == -1 ) {
+//			String scheme = uri.getScheme();
+//			if( scheme.equals( "wss" ) ) {
+//				return WebSocket.DEFAULT_WSS_PORT;
+//			} else if( scheme.equals( "ws" ) ) {
+//				return WebSocket.DEFAULT_PORT;
+//			} else {
+//				throw new RuntimeException( "unkonow scheme" + scheme );
+//			}
+//		}
+		return port;
+	}
+	
+	@Override
+	public void sendMsgBinary(ByteBuffer msg, long timeout) {
+		
+	}
+
+	@Override
+	public void sendMsgBinary(List<ByteBuffer> msg, long timeout) {
+		
+	}
+
+	@Override
+	public void sendMsgText(ByteBuffer msg, long timeout)
+			throws IllegalWebsocketException {
+		if(coreClient.sendMsgQueue.hasPendingStatus()){
+			coreClient.sendMsgQueue.insert(msg);
+			
+		}else{
+			throw new IllegalWebsocketException();
+		}
+	}
+
+	@Override
+	public void close(long timeout) {
+		
+	}
+
+
+	@Override
+	public void run() {
+		
+		try {
+			if( socket == null ) {
+				socket = new Socket( proxy );
+			} else if( socket.isClosed() ) {
+				throw new IOException();
+			}
+			if( !socket.isBound() )
+				socket.connect( new InetSocketAddress( uri.getHost(), getPort() ), connectTimeout );
+			istream = socket.getInputStream();
+			ostream = socket.getOutputStream();
+
+			sendHandshake();
+		} catch ( /*IOException | SecurityException | UnresolvedAddressException | InvalidHandshakeException | ClosedByInterruptException | SocketTimeoutException */Exception e ) {
+			onWebsocketError(  e,"创建socket连接异常" );
+			return;
+		}
+
+		writeIOThread = new Thread( new WriteIOMsgThread() );
+		writeIOThread.start();
+		
+		readIOThread = new Thread(new ReadIOMsgThread());
+		readIOThread.start();
+		
+	}
+
+	/**
+	 * 该握手是websocket协议规定的一部分
+	 */
+	private void sendHandshake(){
+		
+		System.out.println("发送握手信息");
+	}
+	
+	@Override
+	public void onWebsocketMessageB(ByteBuffer msg) {
+		onMessageB(msg);
+		
+	}
+
+	@Override
+	public void onWebsocketMessageT(ByteBuffer msg) {
+		onMessageT(msg);
+		
+	}
+
+	@Override
+	public void onWebsocketError(Exception e, String info) {
+
+		coreClient.sendMsgQueue.setPendingStatus(false);
+		onError(e,info);
+	}
+
+	@Override
+	public void onWebsocketClose(Exception e, String info) {
+		coreClient.sendMsgQueue.setPendingStatus(false);
+		onClose(e,info);
+	}
+	
+	
+	/**
+	 * 接收二进制消息
+	 * @param msg
+	 */
+	public abstract void onMessageB(ByteBuffer msg);
+	
+	/**
+	 * 接收文本消息
+	 * @param msg 文件消息内容
+	 */
+	public abstract void onMessageT(ByteBuffer msg);
+	
+	/**
+	 * 读取和写入异常		
+	 * @param e 异常
+	 * @param info 异常的补充消息
+	 */
+	public abstract void onError(Exception e,String info);
+	
+	/**
+	 * 异常关闭
+	 * @param e 异常
+	 * @param info 异常的补充消息
+	 */
+	public abstract void onClose(Exception e,String info);
+	
+	
+	/**
+	 * 处理消息线程
+	 * <br>
+	 * 该线程负责从通道中读取消息
+	 * 并将该消息放到待处理队列中，
+	 * 如果待处理队列满，则线程阻塞
+	 * @author wurunzhou
+	 *
+	 */
+	class ReadIOMsgThread implements Runnable{
+
+		
+		@Override
+		public void run() {
+			Thread.currentThread().setName( "WebsocketReadThread" );
+			// 不断的读IO
+			byte[] rawbuffer = new byte[ 16834 ];
+			int readBytes;
+			try {
+			while ( ( readBytes = istream.read( rawbuffer ) ) != -1 ) {
+				coreClient.processMsgT( ByteBuffer.wrap( rawbuffer, 0, readBytes ) );
+			}
+			}catch(IOException e) {
+				System.out.println("客户端读取异常");
+				onWebsocketError(e, "客户端读取异常");
+			}
+		}
+		
+	}
+	
+	/**
+	 * 
+	 * 发送线程
+	 * <br> 
+	 * 从待发送消息队列中取出一个消息发送出去，
+	 * 如果待发送消息队列为空，则该线程阻塞。
+	 * @author wurunzhou
+	 *
+	 */
+	class WriteIOMsgThread implements Runnable{
+
+		
+		@Override
+		public void run() {
+//			while(coreClient.sendMsgQueue.hasPendingStatus()){
+//				try {
+//					sendMsgText(coreClient.sendMsgQueue.get(),0);
+//				} catch (IllegalWebsocketException e) {
+//					e.printStackTrace();
+//				}
+//				
+//			}
+			Thread.currentThread().setName( "WebsocketWriteThread" );
+			try {
+				while ( !Thread.interrupted() ) {
+					ByteBuffer buffer = coreClient.sendMsgQueue.get();
+					ostream.write( buffer.array(), 0, buffer.limit() );
+					ostream.flush();
+				}
+			} catch ( IOException e ) {
+				System.out.println("客户端发送消息异常");
+				onWebsocketError(e, "客户端发送消息异常");
+			}
+		
+		
+			
+		}
+		
+	}
+
+
+}

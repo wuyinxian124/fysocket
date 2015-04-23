@@ -1,0 +1,25 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Web Socket 文本和二进制（合并login）USER2</title>
+	<meta charset="utf-8">
+	</head>
+<script src="workmain.js"></script>
+
+	<body>
+		<h1>Web Socket 文本和二进制（合并login）USER2</h1>
+		<div id="msg" style="height: 300px;"></div>	
+		<p>请输入一些文字</p>
+		<input type="text" id="text"/>
+		<button id="connect" onclick="connect();">建立连接</button>
+		<!--<button id="login" onclick="login1();">登录</button> -->
+		<button id="send" onclick="send();">发送消息</button>
+		<input type="file" value="sdgsdg" id="demo_input" />
+		<button id="sendimag1e" onclick="screenshot();">截屏</button>
+		<input type="button" value="清除缓存" onclick="test();" id="btn"/>
+		<button id="sendimage" onclick="sendimage2();">发送图片</button>
+		<button id="disconnect" onclick="disconnect();">断开连接</button>
+		<p id="img_area"></p>
+		<div id = "img1"></div>
+	</body>
+</html>

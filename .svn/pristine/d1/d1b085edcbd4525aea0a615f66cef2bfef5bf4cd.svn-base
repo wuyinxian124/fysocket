@@ -1,0 +1,12 @@
+package com.fy.msgsys.appclient.napi.core.handshake;
+
+public interface HandshakeListener {
+
+	
+	public void sendHSOK();
+	
+	public void receiveHSBack();
+	
+	public void handshakeOK();
+	
+}
