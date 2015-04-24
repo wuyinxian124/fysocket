@@ -12,6 +12,7 @@ public class EchoWorker implements Runnable {
 		
 		System.arraycopy(data, 0, dataCopy, 0, count);
 		System.out.println("收到 client 消息：" + new String(dataCopy));
+		
 		synchronized(queue) {
 			queue.add(new ServerDataEvent(server, socket, dataCopy));
 			queue.notify();
