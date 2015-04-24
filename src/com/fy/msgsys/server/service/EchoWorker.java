@@ -9,7 +9,9 @@ public class EchoWorker implements Runnable {
 	
 	public void processData(NioServer server, SocketChannel socket, byte[] data, int count) {
 		byte[] dataCopy = new byte[count];
+		
 		System.arraycopy(data, 0, dataCopy, 0, count);
+		System.out.println("收到 client 消息：" + new String(dataCopy));
 		synchronized(queue) {
 			queue.add(new ServerDataEvent(server, socket, dataCopy));
 			queue.notify();
