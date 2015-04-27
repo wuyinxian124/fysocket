@@ -1,4 +1,4 @@
-package com.fy.msgsys.server.service;
+package com.fy.msgsys.server1.service;
 
 import java.io.IOException;
 import java.net.InetAddress;
