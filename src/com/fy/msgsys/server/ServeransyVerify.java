@@ -60,6 +60,7 @@ public class ServeransyVerify {
 			serVerify.logger.log(Level.INFO, SocketConstant.ERROROUT.getRssURL()+" socketFy 启动失败");
 		}
         
+        
         serVerify.logger.exiting("fYsocket", "main()");
         
     }
