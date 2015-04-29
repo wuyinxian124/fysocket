@@ -1213,6 +1213,7 @@ logger.log(Level.INFO, c.toString());
 	        		errroTimes ++;
 	        		if(errroTimes >= 5){
 	        			closeSocket();
+	        			return null;
 	        			//Thread.currentThread().interrupt();
 	        		}
 	        			
