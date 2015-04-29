@@ -19,6 +19,7 @@ public class TestMain {
 		new TestMain().test11();
 	}
 	
+	
 	public void test12(){
 	    Set set1=new HashSet();
 	    set1.add(new Date());    //向列表中添加数据
