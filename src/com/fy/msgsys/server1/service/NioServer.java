@@ -29,10 +29,13 @@ public class NioServer implements Runnable {
 	private EchoWorker worker;
 
 	// A list of PendingChange instances
-	private List pendingChanges = new LinkedList();
+	private List<ChangeRequest> pendingChanges = new LinkedList<ChangeRequest>();
 
 	// Maps a SocketChannel to a list of ByteBuffer instances
-	private Map pendingData = new HashMap();
+	/**
+	 *  存储待发送消息的缓存对象，一个socketChannel对应一个bytebuffer列表。
+	 */
+	private Map<SocketChannel, List<ByteBuffer>> pendingData = new HashMap<SocketChannel, List<ByteBuffer>>();
 
 	public NioServer(InetAddress hostAddress, int port, EchoWorker worker) throws IOException {
 		this.hostAddress = hostAddress;
@@ -48,9 +51,9 @@ public class NioServer implements Runnable {
 
 			// And queue the data we want written
 			synchronized (this.pendingData) {
-				List queue = (List) this.pendingData.get(socket);
+				List<ByteBuffer> queue = this.pendingData.get(socket);
 				if (queue == null) {
-					queue = new ArrayList();
+					queue = new ArrayList<ByteBuffer>();
 					this.pendingData.put(socket, queue);
 				}
 				queue.add(ByteBuffer.wrap(data));
@@ -66,12 +69,13 @@ public class NioServer implements Runnable {
 			try {
 				// Process any pending changes
 				synchronized (this.pendingChanges) {
-					Iterator changes = this.pendingChanges.iterator();
+					Iterator<ChangeRequest> changes = this.pendingChanges.iterator();
 					while (changes.hasNext()) {
-						ChangeRequest change = (ChangeRequest) changes.next();
+						ChangeRequest change = changes.next();
 						switch (change.type) {
 						case ChangeRequest.CHANGEOPS:
 							SelectionKey key = change.socket.keyFor(this.selector);
+							// 添加write
 							key.interestOps(change.ops);
 						}
 					}
@@ -154,7 +158,7 @@ public class NioServer implements Runnable {
 		SocketChannel socketChannel = (SocketChannel) key.channel();
 
 		synchronized (this.pendingData) {
-			List queue = (List) this.pendingData.get(socketChannel);
+			List<ByteBuffer> queue = this.pendingData.get(socketChannel);
 
 			// Write until there's not more data ...
 			while (!queue.isEmpty()) {

@@ -14,6 +14,7 @@ public class MainStart {
 			EchoWorker worker = new EchoWorker();
 			new Thread(worker).start();
 			new Thread(new NioServer(null, 9090, worker)).start();
+			new Thread(new NormalforJavaServer()).start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
