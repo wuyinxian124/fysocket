@@ -68,7 +68,9 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 	 * @param msg
 	 */
 	private void dealMsg(String msg){
+		// 截取消息
 		
+		// 找到互动室
 	}
 
 
