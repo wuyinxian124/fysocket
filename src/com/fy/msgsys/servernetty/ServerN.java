@@ -24,6 +24,7 @@ public class ServerN {
 	private final ChannelGroup group = new DefaultChannelGroup(
 			ImmediateEventExecutor.INSTANCE);
 
+	
 	public void run() throws Exception {
 
 		// 这个是用于serversocketchannel的eventloop
