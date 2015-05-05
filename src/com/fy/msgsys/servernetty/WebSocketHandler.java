@@ -23,6 +23,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 		//将数据按照utf-8的方式转化为字符串
 		String aa = buf.toString(Charset.forName("utf-8"));  
 		System.out.println("收到客户端消息："+aa);
+		dealMsg(aa);
 		//创建一个websocket帧，将其发送给客户端
 		WebSocketFrame out = new TextWebSocketFrame(aa);  
 		ctx.pipeline().writeAndFlush(out).addListener(new ChannelFutureListener(){
@@ -56,6 +57,19 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 	}
 
 
+	/**
+	 * 处理客户端消息
+	 * <br>
+	 * 截取消息
+	 * <br>
+	 * 找到对应互动室
+	 * <br>
+	 * 转发
+	 * @param msg
+	 */
+	private void dealMsg(String msg){
+		
+	}
 
 
 }
