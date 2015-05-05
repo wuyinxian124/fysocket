@@ -88,7 +88,6 @@ public class VerifyHandler extends SimpleChannelInboundHandler<Object>   {
 			return false;
 		}
 		
-		
 	}
 	
 }
