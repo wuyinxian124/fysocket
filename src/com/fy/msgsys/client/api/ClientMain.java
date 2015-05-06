@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import com.fy.msgsys.client.api.exception.ConnectException;
 import com.fy.msgsys.client.api.exception.AuthException;
 import com.fy.msgsys.client.api.util.ExceptionConstants;
-import com.fy.msgsys.server.util.SocketConstant;
+import com.fy.msgsys.servernetty.util.SocketConstant;
 
 public class ClientMain  implements IClientCallinface{
 

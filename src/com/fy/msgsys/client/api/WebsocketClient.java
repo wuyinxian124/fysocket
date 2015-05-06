@@ -10,7 +10,7 @@ import java.nio.ByteBuffer;
 import com.fy.msgsys.client.api.exception.IOSocketException;
 import com.fy.msgsys.client.api.exception.AuthException;
 import com.fy.msgsys.client.api.util.ExceptionConstants;
-import com.fy.msgsys.server.util.SocketConstant;
+import com.fy.msgsys.servernetty.util.SocketConstant;
 
 import edu.fy.com.websocketServer.verifyReactor.util.ClientException;
 

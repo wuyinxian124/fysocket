@@ -2,7 +2,7 @@ package com.fy.msgsys.servernetty;
 
 import java.util.logging.Logger;
 
-import com.fy.msgsys.server.util.logger.LoggerUtil;
+import com.fy.msgsys.servernetty.util.logger.LoggerUtil;
 
 import io.netty.bootstrap.*;
 import io.netty.channel.*;

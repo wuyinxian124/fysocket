@@ -8,7 +8,7 @@ import java.util.concurrent.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.fy.msgsys.server.util.logger.LoggerUtil;
+import com.fy.msgsys.servernetty.util.logger.LoggerUtil;
 
 
 public final class UserUtil {
