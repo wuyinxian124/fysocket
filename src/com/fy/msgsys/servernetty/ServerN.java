@@ -24,7 +24,7 @@ public class ServerN {
 	private final ChannelGroup group = new DefaultChannelGroup(
 			ImmediateEventExecutor.INSTANCE);
 	
-	public void run() throws Exception {
+	public void start0() throws Exception {
 
 		// 这个是用于serversocketchannel的eventloop
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -85,6 +85,7 @@ public class ServerN {
 	}
 
 	public static void main(String args[]) throws Exception {
-		new ServerN().run();
+		new NormalforJavaServer().start();
+		new ServerN().start0();
 	}
 }
