@@ -1,5 +1,6 @@
 package com.fy.msgsys.servernetty;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.fy.msgsys.servernetty.util.logger.LoggerUtil;
@@ -23,7 +24,7 @@ public class ServerN {
 	
 	private final ChannelGroup group = new DefaultChannelGroup(
 			ImmediateEventExecutor.INSTANCE);
-	
+	private final int  PORT = 8877;
 	public void start0() throws Exception {
 
 		// 这个是用于serversocketchannel的eventloop
@@ -75,7 +76,8 @@ public class ServerN {
 			});
 			// bind方法会创建一个serverchannel，并且会将当前的channel注册到eventloop上面，
 			// 会为其绑定本地端口，并对其进行初始化，为其的pipeline加一些默认的handler
-			ChannelFuture f = b.bind(8877).sync();
+			ChannelFuture f = b.bind(PORT).sync();
+			logger.log(Level.INFO, "*******************socketNetty启动监听"+PORT);
 			// 相当于在这里阻塞，直到serverchannel关闭
 			f.channel().closeFuture().sync();
 		} finally {
