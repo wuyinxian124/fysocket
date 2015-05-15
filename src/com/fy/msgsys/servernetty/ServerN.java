@@ -70,7 +70,7 @@ public class ServerN {
 					ch.pipeline().addLast("verify",new VerifyHandler());
 					
 					
-					ch.pipeline().addLast(new WebSocketHandler());
+					ch.pipeline().addLast("work",new WebSocketHandler());
 				}
 
 			});

@@ -36,10 +36,12 @@ public class VerifyHandler extends SimpleChannelInboundHandler<Object>   {
 		if(verifyUser(aa,ctx.channel())){
 			WebSocketFrame out = new TextWebSocketFrame("ok");  
 			ctx.pipeline().remove("verify");
+			ctx.writeAndFlush(out);
 			logger.log(Level.INFO, "用户验证成功");
 		}else{
 			logger.log(Level.INFO, "用户验证失败");
 			WebSocketFrame out = new TextWebSocketFrame("ack");  
+			ctx.writeAndFlush(out);
 			ctx.channel().close();
 		}
 
@@ -47,8 +49,8 @@ public class VerifyHandler extends SimpleChannelInboundHandler<Object>   {
 
 	@Override
 	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-		ctx.pipeline().writeAndFlush("client "+ctx.channel()+" join");
-		logger.log(Level.INFO, "channelReadComplete");
+		//ctx.pipeline().writeAndFlush("client "+ctx.channel()+" join");
+		logger.log(Level.INFO, "channelReadComplete"+"client "+ctx.channel()+" join");
 	}
 
 	@Override
