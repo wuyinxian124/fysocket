@@ -18,7 +18,7 @@ import io.netty.handler.codec.http.HttpResponseEncoder;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.util.concurrent.ImmediateEventExecutor;
 
-public class ServerN {
+public class StartServer {
 
 	private final Logger logger= LoggerUtil.getLogger(this.getClass().getName());
 	
@@ -88,6 +88,6 @@ public class ServerN {
 
 	public static void main(String args[]) throws Exception {
 		new NormalforJavaServer().start();
-		new ServerN().start0();
+		new StartServer().start0();
 	}
 }
