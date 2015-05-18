@@ -1,662 +1,261 @@
-[FINER] - Thu Apr 23 20:36:11 CST 2015 : fYsocket.main() : ENTRY
-[INFO] - Thu Apr 23 20:36:11 CST 2015 : com.fy.msgsys.server.ServeransyVerify.main : *******************启动socketFy
-[INFO] - Thu Apr 23 20:36:11 CST 2015 : com.fy.msgsys.server.ServeransyVerify.start : *******************websocket 监听 端口8877
-[INFO] - Thu Apr 23 20:36:11 CST 2015 : com.fy.msgsys.server.NormalforJavaServer.start1 : *******************socket 处理程序 监听 ：8866
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1.<init> : *******************从线程池中拿一个线程，处理用户验证
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1.handlerShake : *******************允许一个用户登录socket，其用户信息（用户ID和验证码）：webband:20141227
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1.run : *******************用户验证通过 ， 启动新的子线程处理 读写操作
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user0:verify0
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user0 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user0:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user0 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user1:verify1
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user1 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user1:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user1 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user2:verify2
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user2 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user2:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user2 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user3:verify3
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user3 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user3:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user3 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user4:verify4
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user4 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user4:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user4 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user5:verify5
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user5 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user5:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:09 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user5 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user6:verify6
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user6 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user6:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user6 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user7:verify7
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user7 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user7:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user7 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user8:verify8
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user8 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user8:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user8 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user9:verify9
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user9 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user9:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user9 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user10:verify10
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user10 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user10:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user10 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user11:verify11
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user11 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user11:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user11 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user12:verify12
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user12 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user12:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user12 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user13:verify13
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user13 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user13:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user13 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user14:verify14
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user14 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user14:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user14 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user15:verify15
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user15 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user15:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user15 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user16:verify16
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user16 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user16:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user16 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user17:verify17
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user17 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user17:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user17 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user18:verify18
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user18 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user18:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user18 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user19:verify19
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user19 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user19:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user19 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user20:verify20
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user20 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user20:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user20 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user21:verify21
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user21 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user21:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user21 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user22:verify22
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user22 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user22:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user22 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user23:verify23
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user23 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user23:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user23 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user24:verify24
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user24 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user24:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user24 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user25:verify25
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user25 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user25:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user25 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user26:verify26
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user26 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user26:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user26 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user27:verify27
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user27 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user27:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user27 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user28:verify28
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user28 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user28:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user28 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user29:verify29
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user29 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user29:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user29 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user30:verify30
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user30 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user30:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user30 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user31:verify31
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user31 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user31:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user31 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user32:verify32
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user32 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user32:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user32 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user33:verify33
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user33 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user33:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user33 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user34:verify34
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user34 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user34:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user34 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user35:verify35
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user35 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user35:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user35 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user36:verify36
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user36 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user36:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user36 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user37:verify37
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user37 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user37:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user37 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user38:verify38
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user38 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user38:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user38 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user39:verify39
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user39 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user39:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user39 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user40:verify40
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user40 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user40:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user40 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user41:verify41
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user41 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user41:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user41 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user42:verify42
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user42 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user42:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user42 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user43:verify43
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user43 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user43:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user43 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user44:verify44
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user44 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user44:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user44 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user45:verify45
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user45 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user45:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user45 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user46:verify46
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user46 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user46:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user46 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user47:verify47
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user47 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user47:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user47 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user48:verify48
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user48 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user48:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user48 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user49:verify49
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user49 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user49:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user49 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user50:verify50
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user50 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user50:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user50 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user51:verify51
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user51 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user51:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user51 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user52:verify52
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user52 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user52:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user52 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user53:verify53
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user53 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user53:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user53 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user54:verify54
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user54 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user54:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user54 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user55:verify55
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user55 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user55:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user55 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user56:verify56
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user56 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user56:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user56 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user57:verify57
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user57 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user57:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user57 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user58:verify58
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user58 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user58:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user58 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user59:verify59
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user59 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user59:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user59 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user60:verify60
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user60 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user60:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user60 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user61:verify61
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user61 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user61:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user61 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user62:verify62
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user62 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user62:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user62 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user63:verify63
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user63 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user63:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user63 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user64:verify64
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user64 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user64:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user64 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user65:verify65
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user65 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user65:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user65 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user66:verify66
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user66 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user66:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user66 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user67:verify67
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user67 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user67:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user67 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user68:verify68
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user68 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user68:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user68 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user69:verify69
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user69 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user69:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user69 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user70:verify70
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user70 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user70:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user70 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user71:verify71
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user71 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user71:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user71 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user72:verify72
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user72 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user72:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user72 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user73:verify73
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user73 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user73:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user73 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user74:verify74
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user74 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user74:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user74 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user75:verify75
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user75 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user75:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user75 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user76:verify76
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user76 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user76:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user76 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user77:verify77
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user77 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user77:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user77 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user78:verify78
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user78 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user78:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user78 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user79:verify79
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user79 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user79:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user79 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user80:verify80
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user80 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user80:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user80 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user81:verify81
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user81 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user81:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user81 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user82:verify82
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user82 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user82:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user82 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user83:verify83
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user83 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user83:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user83 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user84:verify84
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user84 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user84:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user84 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user85:verify85
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user85 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user85:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user85 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user86:verify86
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user86 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user86:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user86 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user87:verify87
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user87 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user87:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user87 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user88:verify88
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user88 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user88:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user88 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user89:verify89
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user89 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user89:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user89 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user90:verify90
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user90 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user90:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user90 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user91:verify91
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user91 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user91:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user91 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user92:verify92
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user92 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user92:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user92 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user93:verify93
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user93 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user93:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user93 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user94:verify94
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user94 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user94:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user94 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user95:verify95
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user95 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user95:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user95 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user96:verify96
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user96 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user96:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user96 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user97:verify97
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user97 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user97:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user97 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user98:verify98
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user98 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user98:[chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user98 ,对应的互动室  [chatroom1, chatroom3]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user99:verify99
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.util.UserUtil.add : 待登录用户  user99 添加到消息服务器
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user99:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:10 CST 2015 : com.fy.msgsys.server.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user99 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:37 CST 2015 : com.fy.msgsys.server.ServeransyVerify.handlerShake0 : limit=129
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user3:verify3:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user3’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user0:verify0:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user0’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user11:verify11:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user11’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user14:verify14:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user14’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user29:verify29:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user29’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user18:verify18:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user18’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user19:verify19:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user19’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user7:verify7:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user7’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user5:verify5:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user5’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user75:verify75:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user75’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user2:verify2:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user2’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user32:verify32:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user4:verify4:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user13:verify13:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user32’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user13’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user4’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user16:verify16:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user16’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user46:verify46:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user46’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user43:verify43:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user43’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user10:verify10:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user10’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user31:verify31:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user31’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user35:verify35:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user1:verify1:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user35’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user1’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user34:verify34:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user34’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user40:verify40:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user8:verify8:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user40’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user8’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user38:verify38:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user38’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user22:verify22:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user22’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user26:verify26:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user26’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user24:verify24:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user24’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user42:verify42:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user42’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user15:verify15:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user15’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user33:verify33:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user33’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user36:verify36:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user36’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user37:verify37:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user37’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user44:verify44:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user44’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user67:verify67:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user67’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user17:verify17:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user17’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user20:verify20:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user20’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user41:verify41:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user41’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user6:verify6:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user6’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user25:verify25:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user25’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user28:verify28:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user28’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user9:verify9:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user9’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user21:verify21:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user21’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user39:verify39:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user39’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user69:verify69:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user69’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user27:verify27:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user27’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user45:verify45:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user45’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user12:verify12:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user12’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user70:verify70:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user70’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user30:verify30:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user30’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user23:verify23:apphomewtb:app
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.util.UserUtil.verifyapp : 用户  ‘user23’ app登录验证通过
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1.responseUservirif : 返回信息长度：4
-[INFO] - Thu Apr 23 20:37:42 CST 2015 : com.fy.msgsys.server.ServeransyVerify$ServerThread1$ReciveThread2.<init> : 验证web登录用户,准备读取消息
+[INFO] - Fri May 15 18:51:25 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer.start1 : *******************socket 处理程序 监听 ：8866
+[INFO] - Fri May 15 18:51:25 CST 2015 : com.fy.msgsys.servernetty.ServerN.start0 : *******************socketNetty启动监听8877
+[INFO] - Fri May 15 18:51:37 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1.<init> : *******************从线程池中拿一个线程，处理用户验证
+[INFO] - Fri May 15 18:51:37 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1.handlerShake : *******************允许一个用户登录socket，其用户信息（用户ID和验证码）：webband:20141227
+[INFO] - Fri May 15 18:51:37 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1.run : *******************用户验证通过 ， 启动新的子线程处理 读写操作
+[INFO] - Fri May 15 18:51:37 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user0:verify0
+[INFO] - Fri May 15 18:51:37 CST 2015 : com.fy.msgsys.servernetty.util.UserUtil.add : 待登录用户  user0 添加到消息服务器
+[INFO] - Fri May 15 18:51:37 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user0:[chatroom1, chatroom3]
+[INFO] - Fri May 15 18:51:37 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user0 ,对应的互动室  [chatroom1, chatroom3]
+[INFO] - Fri May 15 18:51:38 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user1:verify1
+[INFO] - Fri May 15 18:51:38 CST 2015 : com.fy.msgsys.servernetty.util.UserUtil.add : 待登录用户  user1 添加到消息服务器
+[INFO] - Fri May 15 18:51:38 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user1:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
+[INFO] - Fri May 15 18:51:38 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user1 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
+[INFO] - Fri May 15 18:51:39 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user2:verify2
+[INFO] - Fri May 15 18:51:39 CST 2015 : com.fy.msgsys.servernetty.util.UserUtil.add : 待登录用户  user2 添加到消息服务器
+[INFO] - Fri May 15 18:51:39 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user2:[chatroom1, chatroom3]
+[INFO] - Fri May 15 18:51:39 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user2 ,对应的互动室  [chatroom1, chatroom3]
+[INFO] - Fri May 15 18:51:40 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user3:verify3
+[INFO] - Fri May 15 18:51:40 CST 2015 : com.fy.msgsys.servernetty.util.UserUtil.add : 待登录用户  user3 添加到消息服务器
+[INFO] - Fri May 15 18:51:40 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user3:[chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
+[INFO] - Fri May 15 18:51:40 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user3 ,对应的互动室  [chatroom0, chatroom1, chatroom2, chatroom3, chatroom4]
+[INFO] - Fri May 15 18:51:41 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#U#user4:verify4
+[INFO] - Fri May 15 18:51:41 CST 2015 : com.fy.msgsys.servernetty.util.UserUtil.add : 待登录用户  user4 添加到消息服务器
+[INFO] - Fri May 15 18:51:41 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.run : 收到一个命令#C#user4:[chatroom1, chatroom3]
+[INFO] - Fri May 15 18:51:41 CST 2015 : com.fy.msgsys.servernetty.NormalforJavaServer$ServerThread1$ReciveThreaS4.process : 用户user4 ,对应的互动室  [chatroom1, chatroom3]
+[INFO] - Fri May 15 18:53:18 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.channelReadComplete : channelReadCompleteclient [id: 0xb23a0cfe, /222.201.139.175:51678 => /222.201.139.159:8877] join
+[INFO] - Fri May 15 18:53:23 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.channelRead : 收到客户端消息：user2:verify2:apphomewtb:app
+[INFO] - Fri May 15 18:53:23 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user2:verify2:apphomewtb:app
+[INFO] - Fri May 15 18:53:23 CST 2015 : com.fy.msgsys.servernetty.util.UserUtil.verifyapp : 用户  ‘user2’ app登录验证通过
+[INFO] - Fri May 15 18:53:23 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.channelRead : 用户验证成功
+[INFO] - Fri May 15 18:53:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelReadComplete :  方法 channelReadComplete 执行
+[INFO] - Fri May 15 18:53:33 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：20840##0##appclient msg ，sendtimes= 10
+[INFO] - Fri May 15 18:53:33 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=20840.ispublic=0.转发消息体：20840##0##appclient msg ，sendtimes= 10
+[INFO] - Fri May 15 18:53:33 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelReadComplete :  方法 channelReadComplete 执行
+[INFO] - Fri May 15 18:55:59 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.channelReadComplete : channelReadCompleteclient [id: 0x0ab7a51f, /222.201.139.175:51697 => /222.201.139.159:8877] join
+[INFO] - Fri May 15 18:56:04 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.channelRead : 收到客户端消息：user2:verify2:apphomewtb:app
+[INFO] - Fri May 15 18:56:04 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user2:verify2:apphomewtb:app
+[INFO] - Fri May 15 18:56:04 CST 2015 : com.fy.msgsys.servernetty.util.UserUtil.verifyapp : 用户  ‘user2’ app登录验证通过
+[INFO] - Fri May 15 18:56:04 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.channelRead : 用户验证成功
+[INFO] - Fri May 15 18:56:04 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelReadComplete :  方法 channelReadComplete 执行
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg ，sendtimes= 10
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg ，sendtimes= 10
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x0ab7a51f, /222.201.139.175:51697 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x0ab7a51f, /222.201.139.175:51697 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:56:14 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelReadComplete :  方法 channelReadComplete 执行
+[INFO] - Fri May 15 18:57:08 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.channelReadComplete : channelReadCompleteclient [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877] join
+[INFO] - Fri May 15 18:57:13 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.channelRead : 收到客户端消息：user3:verify3:apphomewtb:app
+[INFO] - Fri May 15 18:57:13 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user3:verify3:apphomewtb:app
+[INFO] - Fri May 15 18:57:13 CST 2015 : com.fy.msgsys.servernetty.util.UserUtil.verifyapp : 用户  ‘user3’ app登录验证通过
+[INFO] - Fri May 15 18:57:13 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.channelRead : 用户验证成功
+[INFO] - Fri May 15 18:57:13 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelReadComplete :  方法 channelReadComplete 执行
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg v3，sendtimes= 10
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg v3，sendtimes= 10
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x0ab7a51f, /222.201.139.175:51697 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x0ab7a51f, /222.201.139.175:51697 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user3
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:57:23 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelReadComplete :  方法 channelReadComplete 执行
+[INFO] - Fri May 15 18:58:28 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.channelReadComplete : channelReadCompleteclient [id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877] join
+[INFO] - Fri May 15 18:58:33 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.channelRead : 收到客户端消息：user2:verify2:apphomewtb:app
+[INFO] - Fri May 15 18:58:33 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.verifyUser : 获取登录用户发送用户名和验证码（app用户登录含有：app）=user2:verify2:apphomewtb:app
+[INFO] - Fri May 15 18:58:33 CST 2015 : com.fy.msgsys.servernetty.util.UserUtil.verifyapp : 用户  ‘user2’ app登录验证通过
+[INFO] - Fri May 15 18:58:33 CST 2015 : com.fy.msgsys.servernetty.VerifyHandler.channelRead : 用户验证成功
+[INFO] - Fri May 15 18:58:33 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelReadComplete :  方法 channelReadComplete 执行
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg ，sendtimes= 9
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg ，sendtimes= 9
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelReadComplete :  方法 channelReadComplete 执行
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg ，sendtimes= 8
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg ，sendtimes= 8
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg ，sendtimes= 7
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg ，sendtimes= 7
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg ，sendtimes= 6
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg ，sendtimes= 6
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelReadComplete :  方法 channelReadComplete 执行
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg ，sendtimes= 5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg ，sendtimes= 5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg ，sendtimes= 4
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg ，sendtimes= 4
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg ，sendtimes= 3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg ，sendtimes= 3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg ，sendtimes= 2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg ，sendtimes= 2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg ，sendtimes= 1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg ，sendtimes= 1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg ，sendtimes= 0
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg ，sendtimes= 0
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelRead : 收到客户端消息：chatroom1##0##appclient msg ，sendtimes= -1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发消息chatID=chatroom1.ispublic=0.转发消息体：chatroom1##0##appclient msg ，sendtimes= -1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 互动室 ‘chatroom1’ 在线用户(待登录用户)有：[user0, user1, user2, user3, user4]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user0,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user1,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user2,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user2
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0xb0568985, /222.201.139.175:51704 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user3,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : cccccccc------[id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877],conectionssize=1
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferMessage1 : 执行转发操作transferMessage
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : 转发…………………………给 user3
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : [id: 0x54261da9, /222.201.139.159:4344 => /222.201.139.159:8877]
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.transferTextMessage1 : ------user4,size=5
+[INFO] - Fri May 15 18:58:43 CST 2015 : com.fy.msgsys.servernetty.WebSocketHandler.channelReadComplete :  方法 channelReadComplete 执行
