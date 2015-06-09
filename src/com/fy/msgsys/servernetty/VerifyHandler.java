@@ -87,6 +87,7 @@ public class VerifyHandler extends SimpleChannelInboundHandler<Object>   {
 			// 等于4 表示是app 用户登录
 			return UserUtil.getInstance().verifyapp(lala[0], lala[1], lala[2],lala[3], channel);
 		}else{
+			logger.log(Level.WARNING,"验证码格式不对（分隔符为 ：）,分割结构为3或4");
 			return false;
 		}
 		

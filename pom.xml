@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.scut.wusir</groupId>
 	<artifactId>fysocket</artifactId>
-	<version>1.0.1</version><!--  nio 版本总是为奇数 -->
+	<version>1.0.3</version><!--  nio 版本总是为奇数 -->
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,7 +41,7 @@
 		<dependency>
 			<groupId>io.netty</groupId>
 			<artifactId>netty-all</artifactId>
-			<version>4.0.26.Final</version>
+			<version>4.0.27.Final</version>
 		</dependency>
 
 	</dependencies>
