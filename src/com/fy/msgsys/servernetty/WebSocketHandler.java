@@ -32,20 +32,6 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 	private final Logger logger = LoggerUtil.getLogger(this.getClass().getName());
 	
 	@Override
-	public void channelRead(final ChannelHandlerContext ctx, Object msg)
-			throws Exception {
-		
-		if(msg instanceof WebSocketFrame){
-			handleWebscoketFrame(ctx,(WebSocketFrame)msg);
-		}else{
-			logger.log(Level.WARNING, "获取的片段不是websocketFrame");
-		}
-
-
-		
-	}
-
-	@Override
 	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
 		logger.log(Level.INFO," 方法 channelReadComplete 执行");
 		ctx.flush();
@@ -60,9 +46,32 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		System.out.println("channelRead0 有用");
+		logger.log(Level.WARNING,"channelRead0 方法被执行");
+		if(msg instanceof WebSocketFrame){
+			handleWebscoketFrame(ctx,(WebSocketFrame)msg);
+		}else{
+			logger.log(Level.WARNING, "获取的片段不是websocketFrame");
+		}
 	}
 
+	/*
+	 	@Override
+	public void channelRead(final ChannelHandlerContext ctx, Object msg)
+			throws Exception {
+		
+		if(msg instanceof WebSocketFrame){
+			handleWebscoketFrame(ctx,(WebSocketFrame)msg);
+		}else{
+			logger.log(Level.WARNING, "获取的片段不是websocketFrame");
+		}
+		
+	}
+	 */
+	/**
+	 * 
+	 * @param ctx
+	 * @param frame
+	 */
 	private void handleWebscoketFrame(ChannelHandlerContext ctx, WebSocketFrame frame){
 		logger.log(Level.INFO, "服务器获得frame,开始判断frame类型");
         // Check for closing frame
