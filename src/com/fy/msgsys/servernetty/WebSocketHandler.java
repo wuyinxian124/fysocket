@@ -9,9 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.fy.msgsys.servernetty.util.SignChatroomUtil;
-import com.fy.msgsys.servernetty.util.UserUtil;
-import com.fy.msgsys.servernetty.util.SocketConstant;
+import com.fy.msgsys.servernetty.util.*;
 import com.fy.msgsys.servernetty.util.logger.LoggerUtil;
 
 import io.netty.buffer.ByteBuf;
@@ -20,9 +18,6 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.handler.codec.http.websocketx.CloseWebSocketFrame;
-import io.netty.handler.codec.http.websocketx.PingWebSocketFrame;
-import io.netty.handler.codec.http.websocketx.PongWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 
@@ -31,6 +26,22 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 	
 	private final Logger logger = LoggerUtil.getLogger(this.getClass().getName());
 	
+	@Override
+	public void channelRead(final ChannelHandlerContext ctx, Object msg)
+			throws Exception {
+		
+		WebSocketFrame frame = (WebSocketFrame)msg;
+		//真正的数据是放在buf里面的
+		ByteBuf buf = frame.content();  
+		
+		//将数据按照utf-8的方式转化为字符串
+		String msg0 = buf.toString(Charset.forName("utf-8"));  
+		logger.log(Level.INFO, "收到客户端消息："+msg0);
+		dealMsg(msg0);
+
+		
+	}
+
 	@Override
 	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
 		logger.log(Level.INFO," 方法 channelReadComplete 执行");
@@ -46,63 +57,10 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		logger.log(Level.WARNING,"channelRead0 方法被执行");
-		if(msg instanceof WebSocketFrame){
-			handleWebscoketFrame(ctx,(WebSocketFrame)msg);
-		}else{
-			logger.log(Level.WARNING, "获取的片段不是websocketFrame");
-		}
+		System.out.println("channelRead0 有用");
 	}
 
-	/*
-	 	@Override
-	public void channelRead(final ChannelHandlerContext ctx, Object msg)
-			throws Exception {
-		
-		if(msg instanceof WebSocketFrame){
-			handleWebscoketFrame(ctx,(WebSocketFrame)msg);
-		}else{
-			logger.log(Level.WARNING, "获取的片段不是websocketFrame");
-		}
-		
-	}
-	 */
-	/**
-	 * 
-	 * @param ctx
-	 * @param frame
-	 */
-	private void handleWebscoketFrame(ChannelHandlerContext ctx, WebSocketFrame frame){
-		logger.log(Level.INFO, "服务器获得frame,开始判断frame类型");
-        // Check for closing frame
-        if (frame instanceof CloseWebSocketFrame) {
-            //handshaker.close(ctx.channel(), (CloseWebSocketFrame) frame.retain());
-        	ctx.channel().close();
-            return;
-        }
-        if (frame instanceof PingWebSocketFrame) {
-            ctx.channel().write(new PongWebSocketFrame(frame.content().retain()));
-            return;
-        }
-        if (!(frame instanceof TextWebSocketFrame)) {
-            throw new UnsupportedOperationException(String.format("%s frame types not supported", frame.getClass()
-                    .getName()));
-        }
-        
-		dealText(frame);
-	}
 
-	private void dealText(WebSocketFrame frame){
-		//WebSocketFrame frame = (WebSocketFrame)msg;
-		//真正的数据是放在buf里面的
-		ByteBuf buf = frame.content();  
-		
-		//将数据按照utf-8的方式转化为字符串
-		String msg0 = buf.toString(Charset.forName("utf-8"));  
-		logger.log(Level.INFO, "收到客户端消息："+msg0);
-		dealMsg(msg0);
-	}
-	
 	/**
 	 * 处理客户端消息
 	 * <br>
@@ -116,10 +74,15 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 	private void dealMsg(String msgStr){
 		// 截取消息
 		String[] msgInfos = msgStr.split(SocketConstant.splitCT.getRssURL());
+		
+		int userAindex = msgInfos[2].indexOf("senderAccount");
+		int userAindex1 = msgInfos[2].indexOf("\":\"", userAindex);
+		int userAindex2 = msgInfos[2].indexOf("\",\"", userAindex1);
+		String sendUserAccout = msgInfos[2].substring(userAindex1+3, userAindex2); 
 //		String chatId = msgInfos[0];
 //		String isPublice = msgInfos[1];
 //		String msgContent = msgInfos[2];
-		transferTextMessage1(msgInfos[0], msgInfos[1], msgStr);
+		transferTextMessage1(msgInfos[0], msgInfos[1], msgStr,sendUserAccout);
 			
 		// 找到互动室
 	}
@@ -132,7 +95,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 	 * @throws IOException 
 	 */
 	private void transferTextMessage1(String chatId, String isPublice,
-			String msgcontent) {
+			String msgcontent,String sendUserA) {
 
 		logger.log(Level.INFO, "转发消息chatID=" + chatId + ".ispublic="+ isPublice + ".转发消息体：" + msgcontent);
 
@@ -147,6 +110,10 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 		
 		for (String oluser : olUsers) {
 			if(oluser == null) continue;
+			// wurunzhou add for 自己不转发给自己 begin
+			if(oluser.equals(sendUserA)) continue;
+			
+			// wurunzhou add for 自己不转发给自己  end
 			logger.log(Level.INFO,"------" +oluser+",size=" + olUsers.size());
 			// 一个用户多个连接 update by liuyan 20150207
 			List<Channel> conections = UserUtil.getInstance().getConnets(oluser);

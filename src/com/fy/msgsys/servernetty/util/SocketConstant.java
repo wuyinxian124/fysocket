@@ -16,9 +16,9 @@ public  enum SocketConstant {
 	SYSTEMOUT("*******************"),
 	
 	// 吾托帮web 登录socketFy的登录名称
-	wtbwebKey("webband"),
+	wtbwebKey3("wtbweb3"),
 	
-	
+	wtbwebKey4("wtbweb4"),	
 	/**
 	 * 关键字截取长度
 	 */
