@@ -20,11 +20,13 @@ import io.netty.util.concurrent.ImmediateEventExecutor;
 
 public class StartServer {
 
+	
 	private final Logger logger= LoggerUtil.getLogger(this.getClass().getName());
 	
 	private final ChannelGroup group = new DefaultChannelGroup(
 			ImmediateEventExecutor.INSTANCE);
 	private final int  PORT = 8877;
+	
 	public void start0() throws Exception {
 
 		// 这个是用于serversocketchannel的eventloop
@@ -81,13 +83,27 @@ public class StartServer {
 			// 相当于在这里阻塞，直到serverchannel关闭
 			f.channel().closeFuture().sync();
 		} finally {
+			
 			bossGroup.shutdownGracefully();
 			workerGroup.shutdownGracefully();
+			logger.log(Level.SEVERE, "负责转发消息服务器终止");
 		}
 	}
 
-	public static void main(String args[]) throws Exception {
-		new NormalforJavaServer().start();
-		new StartServer().start0();
+	public static void main(String args[])  {
+		
+		new StartServer().startMain();
+	}
+	private void startMain(){
+		try {
+			new NormalforJavaServer().start();
+			start0();
+			
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.toString());
+		} finally{
+			logger.log(Level.SEVERE,"分发消息服务器和socket连接都终止");
+		}
+		
 	}
 }

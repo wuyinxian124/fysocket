@@ -14,10 +14,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.fy.msgsys.servernetty.util.ConstantUtil;
-import com.fy.msgsys.servernetty.util.SignChatroomUtil;
-import com.fy.msgsys.servernetty.util.SocketConstant;
-import com.fy.msgsys.servernetty.util.UserUtil;
+import com.fy.msgsys.servernetty.util.*;
 import com.fy.msgsys.servernetty.util.logger.LoggerUtil;
 
 public class NormalforJavaServer  extends Thread{
@@ -35,7 +32,7 @@ public class NormalforJavaServer  extends Thread{
     	try {
 			start1();
 		} catch (IOException e) {
-			logger.log(Level.INFO,SocketConstant.ERROROUT.getRssURL() + "socket 模块启动异常");
+			logger.log(Level.SEVERE,SocketConstant.ERROROUT.getRssURL() + "socket 模块启动异常");
 		}
 	}
 
@@ -60,10 +57,10 @@ public class NormalforJavaServer  extends Thread{
     			// wurunzhou edit at 20150313 for 吾托帮web 重连的问题
     			new Thread((new ServerThread1(ss))).start();
 			} catch (IOException e) {
-				logger.log(Level.INFO,SocketConstant.ERROROUT.getRssURL() + "socket 接收连接出现异常，但是不能终止socket主线程，继续接收新的连接");
+				logger.log(Level.SEVERE,SocketConstant.ERROROUT.getRssURL() + "socket 接收连接出现异常，但是不能终止socket主线程，继续接收新的连接");
 				ErrorTimes ++;
 				if(ErrorTimes>=5){
-					logger.log(Level.INFO,SocketConstant.ERROROUT.getRssURL() +"已经出现五次以上连接异常，关闭socket主程序");
+					logger.log(Level.SEVERE,SocketConstant.ERROROUT.getRssURL() +"已经出现五次以上连接异常，关闭socket主程序");
 					overRun = true;
 					//pool.
 				}
@@ -87,6 +84,8 @@ public class NormalforJavaServer  extends Thread{
 	    private DataOutputStream dsout ;
 	    private DataInputStream dsin;
 	    private Socket serverfork;
+	    private String webLoginKey;
+	    
 		public ServerThread1(Socket serverfork) {
 			logger.log(Level.INFO,SocketConstant.SYSTEMOUT.getRssURL() + "从线程池中拿一个线程，处理用户验证");
 			this.serverfork = serverfork;
@@ -94,10 +93,15 @@ public class NormalforJavaServer  extends Thread{
 		
 		@Override
 		public void run() {
-			if (handlerShake()) {
-				logger.log(Level.INFO, SocketConstant.SYSTEMOUT.getRssURL()+ "用户验证通过 ， 启动新的子线程处理 读写操作");
-				new Thread(new ReciveThreaS4()).start();
-			} 
+			try {
+				if (handlerShake()) {
+					logger.log(Level.INFO, SocketConstant.SYSTEMOUT.getRssURL()
+							+ "用户验证通过 ， 启动新的子线程处理 读写操作");
+					new Thread(new ReciveThreaS4(webLoginKey)).start();
+				}
+			} catch (Exception e) {
+				logger.log(Level.SEVERE, "握手线程发生严重异常--" + e.toString());
+			}
 			// new Thread(new SendThreadS4()).start();
 		}
 		
@@ -132,28 +136,48 @@ public class NormalforJavaServer  extends Thread{
 				logger.log(Level.INFO,SocketConstant.SYSTEMOUT.getRssURL() + "允许一个用户登录socket，其用户信息（用户ID和验证码）：" + veriUser);
 				
 				//  wurunzhou edit at 20150313 for 吾托帮重启，重连socketFy 删除久数据  begin
-				String webLoginKey = veriUser.split(SocketConstant.splitNormalUV.getRssURL())[0];
+				webLoginKey = veriUser.split(SocketConstant.splitNormalUV.getRssURL())[0];
+				logger.log(Level.INFO, "待登录的wtb用户名是"+webLoginKey);
 				if(webLoginKey != null){
 					
-					if(SocketConstant.wtbwebKey.getRssURL().equals(webLoginKey)&&wtbweblogin != true){
+					if(SocketConstant.wtbwebKey3.getRssURL().equals(webLoginKey)&&wtbweblogin != true){
 						wtbweblogin = true;
-					}else if(SocketConstant.wtbwebKey.getRssURL().equals(webLoginKey)&&wtbweblogin == true){
+					}else if(SocketConstant.wtbwebKey3.getRssURL().equals(webLoginKey)&&wtbweblogin == true){
+						/**
+						 *  吾托帮web重启 重连socketFy
+						 *  1. 关闭以前的连接，而清除已有数据
+						 */
+						cleanOldData();
+					}else if(SocketConstant.wtbwebKey4.getRssURL().equals(webLoginKey)&&wtbweblogin != true){
+						wtbweblogin = true;
+					}else if(SocketConstant.wtbwebKey4.getRssURL().equals(webLoginKey)&&wtbweblogin == true){
 						/**
 						 *  吾托帮web重启 重连socketFy
 						 *  1. 关闭以前的连接，而清除已有数据
 						 */
 						cleanOldData();
 					}
+
+					dsout.writeInt(veriUser.length());
+					dsout.flush();
+					dsout.writeUTF("ackPass");
+					dsout.flush();	
+					pass = true;	
+					logger.log(Level.INFO, "wtbweb用户" + webLoginKey +",验证通过");
 				}
-				
 				//  wurunzhou edit at 20150313 for 吾托帮重启，重连socketFy 删除久数据  end
-				dsout.writeInt(veriUser.length());
-				dsout.flush();
-				dsout.writeUTF("ackPass");
-				dsout.flush();
-				pass = true;
+				else{
+					dsout.writeInt(veriUser.length());
+					dsout.flush();
+					dsout.writeUTF("ackFalse");
+					dsout.flush();		
+					pass = false;
+					logger.log(Level.INFO, "wtbweb用户" + webLoginKey +",验证不不不通过");
+				}
+
+
 			} catch (IOException e) {
-				logger.log(Level.INFO,SocketConstant.ERROROUT.getRssURL() +" 读取用户信息失败，验证不成功");
+				logger.log(Level.SEVERE,SocketConstant.ERROROUT.getRssURL() +" 读取用户信息失败，验证不成功");
 			}
 
 			return pass;
@@ -167,20 +191,25 @@ public class NormalforJavaServer  extends Thread{
 		 */
 	    class ReciveThreaS4 implements Runnable{
 
+	    	private String threadName4 ;
+	    	public ReciveThreaS4(String threadName4){
+	    		this.threadName4 = threadName4;
+	    	}
+	    	
 			@Override
 			public void run() {
 				try {
 					while (true) {
 						String cMsg = reciveText();
-						logger.log(Level.INFO,"收到一个命令" + cMsg);
+						logger.log(Level.INFO,"收到一个命令" + cMsg + " ，来自"+threadName4 );
 						if (process(cMsg))
 							sendText(cMsg + " :200ok");
 
 					}
 				} catch (IOException e) {
-					logger.log(Level.INFO,SocketConstant.ERROROUT.getRssURL()+"读写子线程 处理失败，关闭子线程");
+					logger.log(Level.SEVERE ,SocketConstant.ERROROUT.getRssURL()+" 针对"+threadName4 +"，读写子线程 处理失败，关闭子线程"+ " ，来自"+threadName4);
 				} finally{
-					logger.log(Level.INFO,SocketConstant.SYSTEMOUT.getRssURL() + "关闭一个读写子线程");
+					logger.log(Level.SEVERE,SocketConstant.SYSTEMOUT.getRssURL() + "关闭一个读写子线程"+ " ，来自"+threadName4);
 				}
 				
 			}
@@ -211,30 +240,35 @@ public class NormalforJavaServer  extends Thread{
 				} else if (SocketConstant.hlUserChats.getRssURL().equals(tmp)) {
 					// 发送的是待登录用户 互动室列表
 					String[] vU = message.substring(3, message.length()).split(SocketConstant.splitUC.getRssURL());
-					logger.log(Level.INFO,"用户"+ vU[0] +" ,对应的互动室  " +string2list(vU[1]).toString());
+					logger.log(Level.INFO,"用户"+ vU[0] +" ,对应的互动室  " +string2list(vU[1]).toString()+ " ，来自"+threadName4);
 					SignChatroomUtil.getInstance().loginIn(vU[0], string2list(vU[1]));
 					pass = true;
 				} else if(SocketConstant.quitUser.getRssURL().equals(tmp)) {
+					// 发送的是用户退出pc的消息
+					// wurunzhou edit at 20150523 for 尝试在退出中添加 url  begin
+					//String[] vU = message.substring(3, message.length()).split(SocketConstant.splitUC.getRssURL());
+					// wurunzhou edit at 20150523 end 
 					String vU = message.substring(3, message.length());
 					// wurunzhou add at 20150410 for 用户退出，没有移除socket begin
 					UserUtil.getInstance().userLoginOut(null,vU);
 					SignChatroomUtil.getInstance().loginOut(vU, null);
 					
 					// wurunzhou add at 20150410 for 用户退出，没有移除socket end
-					logger.log(Level.INFO,"用户 "+ vU + " 退出");
+					logger.log(Level.INFO,"用户 "+ vU + " 从pc退出"+ " ，来自"+threadName4);
 
 				}  else if(SocketConstant.quitUserApp.getRssURL().equals(tmp)) {
+					// 发送的是用户退出app的消息
 					String vU = message.substring(3, message.length());
 					// wurunzhou add at 20150410 for 用户退出，没有移除socket begin
 					UserUtil.getInstance().userLoginOutAPP(null,vU);
 					SignChatroomUtil.getInstance().loginOutApp(vU, null);
 					
 					// wurunzhou add at 20150410 for 用户退出，没有移除socket end
-					logger.log(Level.INFO,"用户 "+ vU + " 退出");
+					logger.log(Level.INFO,"用户 "+ vU + " 从app退出"+ " ，来自"+threadName4);
 
 				} else {
 					// 发送的是 消息
-					logger.log(Level.INFO,"client say:"+message);
+					logger.log(Level.INFO,"client say:"+message+ " ，来自"+threadName4);
 					pass = true;
 				}
 

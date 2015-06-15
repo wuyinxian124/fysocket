@@ -4,11 +4,13 @@ import io.netty.channel.Channel;
 
 import java.net.Socket;
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.concurrent.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.fy.msgsys.servernetty.util.logger.LoggerUtil;
+
 
 
 public final class UserUtil {
@@ -79,18 +81,22 @@ public final class UserUtil {
 		logger.log(Level.INFO,"待登录用户  "+userkey + " 添加到消息服务器");
 	}
 	
-	/** liuysn_gotoMessageCenter
-	 * // 用户退出  1. 待登录用户  2. 已登录用户
-	 * @param userkey 用户关键字 目前是useraccount
-	 */
+
+	/**
+	 * 
+	 * 用户退出  1. 待登录用户  2. 已登录用户
+	 * @param url 用户退出的url
+	 * @param userkey  userkey 用户关键字 目前是useraccount
+ 	 */
     public void userLoginOut(String url,String userkey){
     	
     	if(!MAPUSERCONAPP.containsKey(userkey)){
     		// 如果pc 用户退出的时候，app还有用户登录着。就不能删除该缓存，否则会刷新异常。
     		Object o = MAPUSER.remove(userkey);
     		if(o == null){
-    			logger.log(Level.INFO,"用户 " + userkey + " 退出（暂未登录）-----------");
+    			logger.log(Level.INFO,"用户 " + userkey + " 退出（暂未登录）------不存在用户信息");
     		}else{
+    			
     			logger.log(Level.INFO,"用户 " + userkey + " 退出（暂未登录）");
     		}
     		
@@ -98,20 +104,26 @@ public final class UserUtil {
     		logger.log(Level.INFO,"用户 " + userkey + " 还在app上登录");
     	}
 //    	if(MAPUSERCON.containsKey(userkey)/*&&(MAPUSERCON.get(userkey) instanceof Socket)*/){
-    		Object o1 = MAPUSERCON.remove(userkey);
+    		Map<String, Channel> o1 = MAPUSERCON.remove(userkey);
     		if(o1 == null){
-    			logger.log(Level.INFO,"用户 " + userkey + " 退出（已登录）------------");
+    			logger.log(Level.INFO,"用户 " + userkey + " 退出（已登录）--------不存在用户信息");
     		}else {
-        		logger.log(Level.INFO,"用户 " + userkey + " 退出（已登录）");
+    			Iterator<Entry<String, Channel>> it = o1.entrySet().iterator();
+    			while(it.hasNext()){
+    				it.next().getValue().close();
+    				it.remove();
+    			}
+        		logger.log(Level.INFO,"用户 " + userkey + " 退出（已登录）<主动关闭连接>");
     		}
 
 //    	}
     }
     
-	/** liuysn_gotoMessageCenter
-	 * // 用户退出  1. 待登录用户  2. 已登录用户
-	 * @param userkey 用户关键字 目前是useraccount
-	 */
+    /**
+     * 用户在app中退出
+     * @param url   用户退出  1. 待登录用户  2. 已登录用户
+     * @param userkey   userkey 用户关键字 目前是useraccount
+     */
     public void userLoginOutAPP(String url,String userkey){
     	
     	if(!MAPUSERCON.containsKey(userkey)){
@@ -159,6 +171,7 @@ public final class UserUtil {
 //			MAPUSER.remove(userkey);
 			// 将socket 连接对象保存在缓存中
 			if(MAPUSERCON.get(userkey) == null){
+				// 该用户没有在其他地方登陆吾托帮
 				URLCON = new HashMap<String, Channel>();
 				URLCON.put(url, connetion);
 				MAPUSERCON.put(userkey, URLCON);
@@ -198,7 +211,12 @@ public final class UserUtil {
 //			MAPUSER.remove(userkey);
 //			MAPUSERCON.remove(userkey);
 			userLoginOut("",userkey);
-			logger.log(Level.INFO,"用户  ’"+ userkey +"‘ 登录验证不 bu通过");
+			if(!MAPUSER.containsKey(userkey)||!MAPUSERCON.containsKey(userkey)||!MAPUSERCONAPP.containsKey(userkey)){
+				logger.log(Level.INFO,"用户  ’"+ userkey +"‘ 是非法用户， 连接不能被接受");
+			}else{
+				logger.log(Level.INFO,"用户  ’"+ userkey +"‘ 验证码错误，验证不 通过");
+			}
+			
 		}
 
 		return pass;
