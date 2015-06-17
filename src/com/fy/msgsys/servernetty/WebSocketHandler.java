@@ -18,6 +18,9 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.codec.http.websocketx.CloseWebSocketFrame;
+import io.netty.handler.codec.http.websocketx.PingWebSocketFrame;
+import io.netty.handler.codec.http.websocketx.PongWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketFrame;
 
@@ -57,9 +60,50 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		System.out.println("channelRead0 有用");
+		logger.log(Level.WARNING,"channelRead0 方法被执行");
+		if(msg instanceof WebSocketFrame){
+			handleWebscoketFrame(ctx,(WebSocketFrame)msg);
+		}else{
+			logger.log(Level.WARNING, "获取的片段不是websocketFrame");
+		}
 	}
 
+	/**
+	 * 
+	 * @param ctx
+	 * @param frame
+	 */
+	private void handleWebscoketFrame(ChannelHandlerContext ctx, WebSocketFrame frame){
+		logger.log(Level.INFO, "服务器获得frame,开始判断frame类型");
+        // Check for closing frame
+        if (frame instanceof CloseWebSocketFrame) {
+            //handshaker.close(ctx.channel(), (CloseWebSocketFrame) frame.retain());
+        	ctx.channel().close();
+            return;
+        }
+        if (frame instanceof PingWebSocketFrame) {
+            ctx.channel().write(new PongWebSocketFrame(frame.content().retain()));
+            return;
+        }
+        if (!(frame instanceof TextWebSocketFrame)) {
+            throw new UnsupportedOperationException(String.format("%s frame types not supported", frame.getClass()
+                    .getName()));
+        }
+        
+		dealText(frame);
+	}
+
+	private void dealText(WebSocketFrame frame){
+		//WebSocketFrame frame = (WebSocketFrame)msg;
+		//真正的数据是放在buf里面的
+		ByteBuf buf = frame.content();  
+		
+		//将数据按照utf-8的方式转化为字符串
+		String msg0 = buf.toString(Charset.forName("utf-8"));  
+		logger.log(Level.INFO, "收到客户端消息："+msg0);
+		dealMsg(msg0);
+	}
+	
 
 	/**
 	 * 处理客户端消息
