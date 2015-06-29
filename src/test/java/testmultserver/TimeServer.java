@@ -41,7 +41,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.*;
 
-import com.fy.msgsys.server.util.logger.LoggerUtil;
 
 /* Listen for connections and tell callers what time it is.
  * Demonstrates NIO socket channels (accepting and writing),
@@ -51,7 +50,7 @@ import com.fy.msgsys.server.util.logger.LoggerUtil;
 public class TimeServer {
 
 	
-	private final static Logger logger = LoggerUtil.getLogger("TimeServer");
+	//、private final static Logger logger = LoggerUtilapp.getLogger("TimeServer");
 	// We can't use the normal daytime port (unless we're running as root,
 	// which is unlikely), so we use this one instead
 	private static int PORT = 8877;//8013;
@@ -72,7 +71,7 @@ public class TimeServer {
 		ServerSocketChannel ssc = ServerSocketChannel.open();
 		InetSocketAddress isa = new InetSocketAddress(
 				InetAddress.getLocalHost(), port);
-		logger.log(Level.INFO, "server listening port " + port);
+//、	logger.log(Level.INFO, "server listening port " + port);
 		ssc.socket().bind(isa);
 		return ssc;
 	}
@@ -84,7 +83,7 @@ public class TimeServer {
 		try {
 			String now = new Date().toString();
 			sc.write(encoder.encode(CharBuffer.wrap(now + "\r\n")));
-			logger.log(Level.INFO, sc.socket().getInetAddress() + " : " + now);
+	//、	logger.log(Level.INFO, sc.socket().getInetAddress() + " : " + now);
 			sc.close();
 		} finally {
 			// Make sure we close the channel (and hence the socket)

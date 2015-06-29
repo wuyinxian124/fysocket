@@ -16,5 +16,20 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-all"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-buffer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-codec"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-codec-http"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-codec-socks"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-common"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-example"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-handler"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-microbench"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-testsuite"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-testsuite-osgi"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-transport"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-transport-rxtx"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-transport-sctp"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/netty-transport-udt"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
