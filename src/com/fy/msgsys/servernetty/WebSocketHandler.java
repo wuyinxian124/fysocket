@@ -154,10 +154,51 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 		
 		for (String oluser : olUsers) {
 			if(oluser == null) continue;
-			// wurunzhou add for 自己不转发给自己 begin
-			if(oluser.equals(sendUserA)) continue;
 			
+			// wurunzhou add for  如果识别到信息发送者 回复 msg__ok  ，客户端根据该类容判断消息被发送出去 begin
+			// wurunzhou add for 自己不转发给自己 begin
+			if(oluser.equals(sendUserA)) {
+				logger.log(Level.INFO,"回复自己，让客户端确认消息被正常转发" + oluser);
+				String msgcontent_self = "msg__OK";
+				// 一个用户多个连接 update by liuyan 20150207
+				List<Channel> conections = UserUtil.getInstance().getConnets(oluser);
+				
+				if (conections == null||conections.size() == 0)
+					continue;
+				
+				for (Channel c : conections) {
+					// wurunzhou edit at 20150327 for如果出现有某个连接断开的情况，直接将其删除 begin
+					if(c == null) {
+						// 将该socket对象从缓存中删除
+						UserUtil.getInstance().clearInvalidSocket(c, oluser);
+						continue ;
+					}
+					//logger.log(Level.INFO,"cccccccc------" +c+",conectionssize=" + conections.size());
+					// wurunzhou edit at 20150327 for如果出现有某个连接断开的情况，直接将其删除 end
+					if (c.isActive() ) {
+						// wurunzhou edit at 20150327 for如果出现有某个连接断开的情况，直接将其删除 begin
+						try {
+							transferMessage1(true, msgcontent_self,c);
+							// wurunzhou edit at 20150327 for如果出现有某个连接断开的情况，直接将其删除 end
+							logger.log(Level.INFO, "转发………msg__OK…………………给自己 " + oluser);
+							logger.log(Level.INFO, c.toString());
+						} catch (IOException e) {
+							logger.log(Level.WARNING, "转发给（自己msg__OK）  " + oluser+"-----失败");
+							UserUtil.getInstance().clearInvalidSocket(c, oluser);
+						} 
+
+					}else{
+						// wurunzhou edit at 20150330 for如果出现有某个连接断开的情况，直接将其删除 begin
+						// 将该socket对象从缓存中删除
+						UserUtil.getInstance().clearInvalidSocket(c, oluser);
+						// wurunzhou edit at 20150330 for如果出现有某个连接断开的情况，直接将其删除 end
+					}
+					
+				}				
+				continue;
+			}
 			// wurunzhou add for 自己不转发给自己  end
+			// wurunzhou add for  如果识别到信息发送者 回复 msg__ok  ，客户端根据该类容判断消息被发送出去 begin
 			logger.log(Level.INFO,"------" +oluser+",size=" + olUsers.size());
 			// 一个用户多个连接 update by liuyan 20150207
 			List<Channel> conections = UserUtil.getInstance().getConnets(oluser);
