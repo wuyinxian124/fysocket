@@ -76,7 +76,7 @@ public final class UserUtil {
 	 * @param userkey
 	 * @param verifyCode
 	 */
-	public  void add(String userkey,String verifyCode){
+	public synchronized void add(String userkey,String verifyCode){
 		MAPUSER.put(userkey, verifyCode);
 		logger.log(Level.INFO,"待登录用户  "+userkey + " 添加到消息服务器");
 	}
@@ -88,7 +88,7 @@ public final class UserUtil {
 	 * @param url 用户退出的url
 	 * @param userkey  userkey 用户关键字 目前是useraccount
  	 */
-    public void userLoginOut(String url,String userkey){
+    public synchronized void userLoginOut(String url,String userkey){
     	
     	if(!MAPUSERCONAPP.containsKey(userkey)){
     		// 如果pc 用户退出的时候，app还有用户登录着。就不能删除该缓存，否则会刷新异常。
@@ -124,7 +124,7 @@ public final class UserUtil {
      * @param url   用户退出  1. 待登录用户  2. 已登录用户
      * @param userkey   userkey 用户关键字 目前是useraccount
      */
-    public void userLoginOutAPP(String url,String userkey){
+    public synchronized void userLoginOutAPP(String url,String userkey){
     	
     	if(!MAPUSERCON.containsKey(userkey)){
     		Object o = MAPUSER.remove(userkey);
@@ -317,7 +317,7 @@ public final class UserUtil {
 	 * @param invalid socket 对象
 	 * @param userKey	用户关键字
 	 */
-	public void clearInvalidSocket(Channel invalid,String userKey){
+	public synchronized void clearInvalidSocket(Channel invalid,String userKey){
 		
 		if(MAPUSERCON.containsKey(userKey)){
 //			for(String url:MAPUSERCON.get(userKey)){
@@ -354,7 +354,7 @@ public final class UserUtil {
 	 * 包括pc用户和app 用户
 	 * @return
 	 */
-	public Set<String> getOlUser(){
+	public synchronized Set<String> getOlUser(){
 		Set<String> allUser=new HashSet<String>();
 		Set<String> olUser = MAPUSERCON.keySet();
 		Set<String> olUserapp = MAPUSERCONAPP.keySet();
@@ -368,7 +368,7 @@ public final class UserUtil {
 	 * @param userKey 
 	 * @return socket连接集合
 	 */
-	public List<Channel> getConnets(String userKey){
+	public synchronized List<Channel> getConnets(String userKey){
 		List<Channel> conections = new ArrayList<Channel>();
 		Map<String, Channel> urlCon = MAPUSERCON.get(userKey);
 		Map<String, Channel> urlConApp = MAPUSERCONAPP.get(userKey);

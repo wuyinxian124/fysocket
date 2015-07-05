@@ -37,7 +37,7 @@ public final class SignChatroomUtil {
      * @param userkey
      * @param chats
      */
-    public void loginIn(String userkey,List<String> chats){
+    public synchronized void loginIn(String userkey,List<String> chats){
     	for(String chat :chats){
     		if(CHAT1USER.containsKey(chat)){
     			if(CHAT1USER.get(chat).contains(userkey))
@@ -63,7 +63,7 @@ public final class SignChatroomUtil {
      * @param userkey
      * @param chats
      */
-    public void loginOut(String userkey,List<String> chats){
+    public synchronized void loginOut(String userkey,List<String> chats){
     	// 用户从pc退出，删除 互动室对应用户列表记录的 时候
     	// 需要考虑是否 用户是否还在app上登录。
     	// 如果用户从pc退出，却还没有在app上退出，则不要删除该条缓存
@@ -102,7 +102,7 @@ public final class SignChatroomUtil {
      * @param userkey
      * @param chats
      */
-    public void loginOutApp(String userkey,List<String> chats){
+    public synchronized void loginOutApp(String userkey,List<String> chats){
     	// 用户从app退出，删除 互动室对应用户列表记录的 时候
     	// 需要考虑是否 用户是否还在pc 浏览器上登录。
     	// 如果用户从app退出，却还没有在pc上退出，则不要删除该条缓存
@@ -133,7 +133,7 @@ public final class SignChatroomUtil {
     	}
     }
     
-    public List<String> sendList(String chatView){
+    public synchronized List<String> sendList(String chatView){
     	return CHAT1USER.get(chatView);
     }
 	
@@ -146,7 +146,7 @@ public final class SignChatroomUtil {
      * @param isPublic 是否是公共互动室 , "1"：是; 不是："0"
      * @return
      */
-	public List<String> sendList(String chatViewId, String isPublice){
+	public synchronized List<String> sendList(String chatViewId, String isPublice){
     	
     	if(null != isPublice && "1".equals(isPublice)){
     		// 公共互动室（如：反馈意见、论坛、公告、私聊公共互动室）
