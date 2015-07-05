@@ -150,8 +150,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 		if (olUsers == null||olUsers.size()==0)
 			return;
 		
-		logger.log(Level.INFO, "互动室 ‘" + chatId + "’ 在线用户(待登录用户)有："+ olUsers);
-		
+		logger.log(Level.INFO, "互动室 ‘" + chatId + "’ 在线用户(待登录用户)size=" + olUsers.size()+"，分别是："+ olUsers);
 		for (String oluser : olUsers) {
 			if(oluser == null) continue;
 			
@@ -195,45 +194,43 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 					}
 					
 				}				
-				continue;
-			}
-			// wurunzhou add for 自己不转发给自己  end
-			// wurunzhou add for  如果识别到信息发送者 回复 msg__ok  ，客户端根据该类容判断消息被发送出去 begin
-			logger.log(Level.INFO,"------" +oluser+",size=" + olUsers.size());
-			// 一个用户多个连接 update by liuyan 20150207
-			List<Channel> conections = UserUtil.getInstance().getConnets(oluser);
-			
-			if (conections == null||conections.size() == 0)
-				continue;
-			
-			for (Channel c : conections) {
-				// wurunzhou edit at 20150327 for如果出现有某个连接断开的情况，直接将其删除 begin
-				if(c == null) {
-					// 将该socket对象从缓存中删除
-					UserUtil.getInstance().clearInvalidSocket(c, oluser);
-					continue ;
-				}
-				logger.log(Level.INFO,"cccccccc------" +c+",conectionssize=" + conections.size());
-				// wurunzhou edit at 20150327 for如果出现有某个连接断开的情况，直接将其删除 end
-				if (c.isActive() ) {
-					// wurunzhou edit at 20150327 for如果出现有某个连接断开的情况，直接将其删除 begin
-					try {
-						transferMessage1(true, msgcontent,c);
-						// wurunzhou edit at 20150327 for如果出现有某个连接断开的情况，直接将其删除 end
-						logger.log(Level.INFO, "转发…………………………给 " + oluser);
-						logger.log(Level.INFO, c.toString());
-					} catch (IOException e) {
-						logger.log(Level.WARNING, "转发给  " + oluser+"-----失败");
-						UserUtil.getInstance().clearInvalidSocket(c, oluser);
-					} 
-
-				}else{
-					// wurunzhou edit at 20150330 for如果出现有某个连接断开的情况，直接将其删除 begin
-					// 将该socket对象从缓存中删除
-					UserUtil.getInstance().clearInvalidSocket(c, oluser);
-					// wurunzhou edit at 20150330 for如果出现有某个连接断开的情况，直接将其删除 end
-				}
+			}else{
 				
+				// 一个用户多个连接 update by liuyan 20150207
+				List<Channel> conections = UserUtil.getInstance().getConnets(oluser);
+				
+				if (conections == null||conections.size() == 0)
+					continue;
+				
+				for (Channel c : conections) {
+					// wurunzhou edit at 20150327 for如果出现有某个连接断开的情况，直接将其删除 begin
+					if(c == null) {
+						// 将该socket对象从缓存中删除
+						UserUtil.getInstance().clearInvalidSocket(c, oluser);
+						continue ;
+					}
+					logger.log(Level.INFO,"cccccccc------" +c+",conectionssize=" + conections.size());
+					// wurunzhou edit at 20150327 for如果出现有某个连接断开的情况，直接将其删除 end
+					if (c.isActive() ) {
+						// wurunzhou edit at 20150327 for如果出现有某个连接断开的情况，直接将其删除 begin
+						try {
+							transferMessage1(true, msgcontent,c);
+							// wurunzhou edit at 20150327 for如果出现有某个连接断开的情况，直接将其删除 end
+							logger.log(Level.INFO, "转发…………………………给 " + oluser);
+							logger.log(Level.INFO, c.toString());
+						} catch (IOException e) {
+							logger.log(Level.WARNING, "转发给  " + oluser+"-----失败");
+							UserUtil.getInstance().clearInvalidSocket(c, oluser);
+						} 
+						
+					}else{
+						// wurunzhou edit at 20150330 for如果出现有某个连接断开的情况，直接将其删除 begin
+						// 将该socket对象从缓存中删除
+						UserUtil.getInstance().clearInvalidSocket(c, oluser);
+						// wurunzhou edit at 20150330 for如果出现有某个连接断开的情况，直接将其删除 end
+					}
+					
+				}
 			}
 		}
 
